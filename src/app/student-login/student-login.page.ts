@@ -8,10 +8,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./student-login.page.scss'],
 })
 export class StudentLoginPage implements OnInit {
+
+  userName: any = '';
+  password: any = '';
+  loginDisable = true;
  
   constructor(private authService: AuthenticationService, public router: Router) { }
  
   ngOnInit() {
+  }
+
+  enterUserName() {
+    if (this.userName !== '' && this.password !== '') {
+      this.loginDisable = false;
+    }
+  }
+
+  enterPassword() {
+    if (this.userName !== '' && this.password !== '') {
+      this.loginDisable = false;
+    }
   }
  
   login() {

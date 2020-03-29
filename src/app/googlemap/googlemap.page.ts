@@ -80,7 +80,25 @@ export class GooglemapPage {
       animation: google.maps.Animation.DROP,
     });
     this.markers.push(marker1);
-    
+
+    let points = [
+      {
+        lat: lattitude,
+        lng: longitude
+      },
+      {
+        lat: 6.959515,
+        lng: 80.603027
+      }
+    ];
+
+    var polyline = new google.maps.Polyline({
+      map: this.map,
+      path: points,
+      strokeColor: '#0000FF',
+      strokeOpacity: 0.7,
+      strokeWeight: 1
+    });
     
     // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
     //   .then((result: NativeGeocoderResult[]) => {

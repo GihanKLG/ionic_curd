@@ -10,6 +10,10 @@ const routes: Routes = [
   { path: 'detail', loadChildren: () => import('./student-detail/student-detail.module').then(m => m.StudentDetailPageModule) },
   { path: 'login', loadChildren: () => import('./student-login/student-login.module').then( m => m.StudentLoginPageModule) },
   { path: 'register', loadChildren: () => import('./student-register/student-register.module').then( m => m.StudentRegisterPageModule) },
+  {
+    path: 'googlemap',
+    loadChildren: () => import('./googlemap/googlemap.module').then( m => m.GooglemapPageModule)
+  },
 ];
 
 @NgModule({

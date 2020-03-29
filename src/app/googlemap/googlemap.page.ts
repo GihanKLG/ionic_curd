@@ -14,6 +14,7 @@ export class GooglemapPage {
   @ViewChild('map', {static : false}) mapElement: ElementRef;
   map: any;
   address:string;
+  public markers: any[] = [];
 
   constructor(
     private geolocation: Geolocation,
@@ -56,6 +57,31 @@ export class GooglemapPage {
     };
     console.log(lattitude);
     console.log(longitude);
+    const pos = {
+      lat: 6.959515,
+      lng: 80.603027
+    };
+      
+    const marker = new google.maps.Marker({
+      position: pos, //marker position
+      map: this.map, //map already created
+      animation: google.maps.Animation.DROP,
+    });
+    this.markers.push(marker);
+
+    const pos1 = {
+      lat: lattitude,
+      lng: longitude
+    };  
+
+    const marker1 = new google.maps.Marker({
+      position: pos1, //marker position
+      map: this.map, //map already created
+      animation: google.maps.Animation.DROP,
+    });
+    this.markers.push(marker1);
+    
+    
     // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
     //   .then((result: NativeGeocoderResult[]) => {
     //     this.address = "";

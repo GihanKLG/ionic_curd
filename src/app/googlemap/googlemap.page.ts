@@ -43,12 +43,15 @@ export class GooglemapPage {
 
       this.map.addListener('tilesloaded', () => {
         console.log('accuracy',this.map);
+        this.directionsDisplay.setMap(this.map);
         this.getAddressFromCoords(this.map.center.lat(), this.map.center.lng())
       });
 
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+
+    // this.directionsDisplay.setMap(this.map);
   }
 
   getAddressFromCoords(lattitude, longitude) {

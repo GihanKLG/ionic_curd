@@ -12,6 +12,8 @@ declare var google;
 export class GooglemapPage {
 
   @ViewChild('map', {static : false}) mapElement: ElementRef;
+  directionsService = new google.maps.DirectionsService;
+  directionsDisplay = new google.maps.DirectionsRenderer;
   map: any;
   address:string;
   public markers: any[] = [];
@@ -81,24 +83,45 @@ export class GooglemapPage {
     });
     this.markers.push(marker1);
 
-    let points = [
-      {
-        lat: lattitude,
-        lng: longitude
-      },
-      {
-        lat: 6.959515,
-        lng: 80.603027
-      }
-    ];
+    // let points = [
+    //   {
+    //     lat: lattitude,
+    //     lng: longitude
+    //   },
+    //   {
+    //     lat: 6.959515,
+    //     lng: 80.603027
+    //   }
+    // ];
 
-    var polyline = new google.maps.Polyline({
-      map: this.map,
-      path: points,
-      strokeColor: '#0000FF',
-      strokeOpacity: 0.7,
-      strokeWeight: 1
+    // var polyline = new google.maps.Polyline({
+    //   map: this.map,
+    //   path: points,
+    //   strokeColor: '#0000FF',
+    //   strokeOpacity: 0.7,
+    //   strokeWeight: 1
+    // });
+
+    // let directionsService = new google.maps.DirectionsService;
+    // let directionsDisplay = new google.maps.DirectionsRenderer;
+
+    // directionsDisplay.setMap(this.map);
+    // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+    const that = this;
+    this.directionsService.route({
+      origin: { lat: lattitude, lng: longitude },
+      destination: { lat: 6.959515, lng: 80.603027 },
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      console.log(response, status);
+      if(status === 'OK'){
+        that.directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+
     });
+
     
     // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
     //   .then((result: NativeGeocoderResult[]) => {

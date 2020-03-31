@@ -127,25 +127,24 @@ export class GooglemapPage {
       'geodesic': true
     });
 
-    // let directionsService = new google.maps.DirectionsService;
-    // let directionsDisplay = new google.maps.DirectionsRenderer;
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer;
 
-    // directionsDisplay.setMap(this.map);
-    // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
-    // const that = this;
-    // this.directionsService.route({
-    //   origin: { lat: lattitude, lng: longitude },
-    //   destination: { lat: 6.959515, lng: 80.603027 },
-    //   travelMode: 'DRIVING'
-    // }, (response, status) => {
-    //   console.log(response, status);
-    //   if(status === 'OK'){
-    //     that.directionsDisplay.setDirections(response);
-    //   } else {
-    //     window.alert('Directions request failed due to ' + status);
-    //   }
+    directionsDisplay.setMap(this.map);
+    const that = this;
+    this.directionsService.route({
+      origin: { lat: lattitude, lng: longitude },
+      destination: { lat: 6.959515, lng: 80.603027 },
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      console.log(response, status);
+     // if(status === 'OK'){
+        that.directionsDisplay.setDirections(response);
+      // } else {
+      //   window.alert('Directions request failed due to ' + status);
+      //}
 
-    // });
+    });
 
     
     // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)

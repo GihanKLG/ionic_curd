@@ -43,7 +43,7 @@ export class GooglemapPage {
 
       this.map.addListener('tilesloaded', () => {
         console.log('accuracy',this.map);
-        this.directionsDisplay.setMap(this.map);
+        //this.directionsDisplay.setMap(this.map);
         this.getAddressFromCoords(this.map.center.lat(), this.map.center.lng())
       });
 
@@ -86,44 +86,66 @@ export class GooglemapPage {
     });
     this.markers.push(marker1);
 
-    // let points = [
-    //   {
-    //     lat: lattitude,
-    //     lng: longitude
-    //   },
-    //   {
-    //     lat: 6.959515,
-    //     lng: 80.603027
-    //   }
-    // ];
 
-    // var polyline = new google.maps.Polyline({
+    // var outerCoords = [
+    //   {lat: 6.959515, lng: 80.603027}, // north west
+    //   {lat: 7.011523, lng: 80.603027}, // south west
+    //   {lat: 7.011523, lng: 80.903027}, // south east
+    //   {lat: 6.959515, lng: 80.903027}  // north east
+    // ];
+  
+    // var polyline = new google.maps.Data.Polygon({
     //   map: this.map,
-    //   path: points,
-    //   strokeColor: '#0000FF',
-    //   strokeOpacity: 0.7,
-    //   strokeWeight: 1
+    //   points: outerCoords,
+    //   'color' : '#AA00FF',
+    //   'width': 10,
+    //   'geodesic': true
     // });
+    // Define the LatLng coordinates for an inner path.
+    // var innerCoords1 = [
+    //   {lat: -33.364, lng: 154.207},
+    //   {lat: -34.364, lng: 154.207},
+    //   {lat: -34.364, lng: 155.207},
+    //   {lat: -33.364, lng: 155.207}
+    // ];
+    
+    //this.map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])});
+    
+
+    let points = [
+      {lat: 6.959515, lng: 80.603027}, // north west
+      {lat: 6.969550, lng: 80.603027}, // south west
+      {lat: 6.969550, lng: 80.614030}, // south east
+      {lat: 6.959515, lng: 80.614030}  // north east
+    ];
+
+    var polyline = new google.maps.Polygon({
+      map: this.map,
+      path: points,
+      'color' : '#AA00FF',
+      'width': 10,
+      'geodesic': true
+    });
 
     // let directionsService = new google.maps.DirectionsService;
     // let directionsDisplay = new google.maps.DirectionsRenderer;
 
     // directionsDisplay.setMap(this.map);
     // directionsDisplay.setPanel(this.directionsPanel.nativeElement);
-    const that = this;
-    this.directionsService.route({
-      origin: { lat: lattitude, lng: longitude },
-      destination: { lat: 6.959515, lng: 80.603027 },
-      travelMode: 'DRIVING'
-    }, (response, status) => {
-      console.log(response, status);
-      if(status === 'OK'){
-        that.directionsDisplay.setDirections(response);
-      } else {
-        window.alert('Directions request failed due to ' + status);
-      }
+    // const that = this;
+    // this.directionsService.route({
+    //   origin: { lat: lattitude, lng: longitude },
+    //   destination: { lat: 6.959515, lng: 80.603027 },
+    //   travelMode: 'DRIVING'
+    // }, (response, status) => {
+    //   console.log(response, status);
+    //   if(status === 'OK'){
+    //     that.directionsDisplay.setDirections(response);
+    //   } else {
+    //     window.alert('Directions request failed due to ' + status);
+    //   }
 
-    });
+    // });
 
     
     // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)

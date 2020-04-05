@@ -1,5 +1,7 @@
 {
   "name": "Ionic4HttpClient",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

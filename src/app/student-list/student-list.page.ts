@@ -1,6 +1,8 @@
 //student-list.page.ts
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { AuthenticationService } from './../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
@@ -11,9 +13,7 @@ export class StudentListPage implements OnInit {
 
   studentsData: any;
 
-  constructor(
-    public apiService: ApiService
-  ) {
+  constructor(public apiService: ApiService, private authService: AuthenticationService, public router: Router) {
     this.studentsData = [];
   }
 
@@ -38,4 +38,16 @@ export class StudentListPage implements OnInit {
     });
   }
 
+  logout() {
+    console.log("logout");
+    this.authService.logout();
+    this.authService.authenticationState.subscribe(state => {
+      console.log(state);
+      if (state) {
+        this.router.navigate(['list']);
+      } else {
+        this.router.navigate(['login']);
+      }
+    });
+  }
 }

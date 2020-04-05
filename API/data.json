@@ -28,12 +28,19 @@
       "id": 5,
       "name": "Juana Ziemann",
       "age": "16",
-      "address": "612 Dayana Stream"
+      "address": "matara"
     },
     {
       "name": "Gihan",
       "age": "25",
-      "id": 6
+      "id": 6,
+      "address": "kekandura"
+    },
+    {
+      "name": "ruwan",
+      "id": 7,
+      "address": "yatiyana",
+      "age": "22"
     }
   ]
 }

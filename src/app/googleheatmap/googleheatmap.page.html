@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-row>
+    <ion-col text-start padding-top>
+      <ion-title>Google Heat Map</ion-title>
+    </ion-col>
+    <ion-col text-end>
+      <ion-button (click)="loadMap()" shape="round" fill="outline">
+        <ion-icon slot="start" name="locate"></ion-icon>
+        Where I Am
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-header>
+<ion-content>
+
+  <div class="map-wrapper">
+    <!-- <div id="map_center">
+      <img src="../../assets/icon/favicon.png" />
+    </div> -->
+    <div #map id="map"></div>
+  </div>
+  <div id="address">
+    <span>{{address}}</span>
+  </div>
+ 
+ 
+</ion-content>

@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'googlemap',
     loadChildren: () => import('./googlemap/googlemap.module').then( m => m.GooglemapPageModule)
   },
+  {
+    path: 'googleheatmap',
+    loadChildren: () => import('./googleheatmap/googleheatmap.module').then( m => m.GoogleheatmapPageModule)
+  },
 ];
 
 @NgModule({

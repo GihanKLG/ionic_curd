@@ -38,7 +38,8 @@ export class GooglemapPage {
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 8,
+        zoom: 15,
+        scrollwheel: false,
         //mapTypeId: 'satellite'
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
@@ -71,6 +72,7 @@ export class GooglemapPage {
 
     var i;
     var mark = [];
+    var circle = [];
     var locations = [
       {lat: 6.959515, lng: 80.603027},
       {lat: 8.243478, lng: 81.131043},
@@ -92,7 +94,7 @@ export class GooglemapPage {
 
     var icon = {
           url: '../../assets/icon/pin.png',
-          scaledSize: new google.maps.Size(20, 20), // size
+          scaledSize: new google.maps.Size(15, 15), // size
       };
 
     for (i = 0; i < locations.length; i++) {  
@@ -103,6 +105,20 @@ export class GooglemapPage {
         });
         this.markers.push(mark[i]);
       }
+
+      for (i = 0; i < locations.length; i++) {  
+        circle[i] = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: 'black',
+          fillOpacity: 0.35,
+          map: this.map,
+          center: locations[i],
+          radius: 100
+        });
+    
+     }  
   
       // var heatmapData = [
       //   new google.maps.LatLng(6.959515, 80.603027),
@@ -157,35 +173,35 @@ export class GooglemapPage {
       //   ]
       // });    
 
-    let points = [
-      {lat: 6.959515, lng: 80.603027}, // north west
-      {lat: 6.969550, lng: 80.603027}, // south west
-      {lat: 6.969550, lng: 80.614030}, // south east
-      {lat: 6.959515, lng: 80.614030}  // north east
-    ];
+    // let points = [
+    //   {lat: 6.959515, lng: 80.603027}, // north west
+    //   {lat: 6.969550, lng: 80.603027}, // south west
+    //   {lat: 6.969550, lng: 80.614030}, // south east
+    //   {lat: 6.959515, lng: 80.614030}  // north east
+    // ];
 
-    var polyline = new google.maps.Polygon({
-      map: this.map,
-      path: points,
-      'color' : '#AA00FF',
-      'width': 10,
-      'geodesic': true
-    });
+    // var polyline = new google.maps.Polygon({
+    //   map: this.map,
+    //   path: points,
+    //   'color' : '#AA00FF',
+    //   'width': 10,
+    //   'geodesic': true
+    // });
 
-    let points1 = [
-      {lat: 6.859515, lng: 80.603027}, // north west
-      {lat: 6.869550, lng: 80.603027}, // south west
-      {lat: 6.869550, lng: 80.614030}, // south east
-      {lat: 6.859515, lng: 80.614030}  // north east
-    ];
+    // let points1 = [
+    //   {lat: 6.859515, lng: 80.603027}, // north west
+    //   {lat: 6.869550, lng: 80.603027}, // south west
+    //   {lat: 6.869550, lng: 80.614030}, // south east
+    //   {lat: 6.859515, lng: 80.614030}  // north east
+    // ];
 
-    var polyline1 = new google.maps.Polygon({
-      map: this.map,
-      path: points,
-      'color' : '#AA00FF',
-      'width': 10,
-      'geodesic': true
-    });
+    // var polyline1 = new google.maps.Polygon({
+    //   map: this.map,
+    //   path: points,
+    //   'color' : '#AA00FF',
+    //   'width': 10,
+    //   'geodesic': true
+    // });
 
 
     // var trafficLayer = new google.maps.TrafficLayer();

@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'googleheatmap',
     loadChildren: () => import('./googleheatmap/googleheatmap.module').then( m => m.GoogleheatmapPageModule)
   },
+  {
+    path: 'clustermap',
+    loadChildren: () => import('./clustermap/clustermap.module').then( m => m.ClustermapPageModule)
+  },
 ];
 
 @NgModule({

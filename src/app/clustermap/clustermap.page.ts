@@ -74,7 +74,22 @@ export class ClustermapPage {
       // Add a marker clusterer to manage the markers.
       var markerCluster = new MarkerClusterer(map, markers,
           {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-    
+
+      var circle = [];
+      var i;      
+      
+      for (i = 0; i < location.length; i++) {  
+        circle[i] = new google.maps.Circle({
+          strokeColor: 'purple',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: 'black',
+          fillOpacity: 0.35,
+          map: map,
+          center: location[i],
+          radius: 100
+        });
+      }  
 
     }).catch((error) => {
       console.log('Error getting location', error);

@@ -38,7 +38,7 @@ export class GoogleheatmapPage {
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 8,
+        zoom: 18,
         //mapTypeId: 'satellite'
         mapTypeId: google.maps.MapTypeId.SATELLITE
       }
@@ -46,6 +46,8 @@ export class GoogleheatmapPage {
       this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+      this.map.setTilt(45);
 
       this.map.addListener('tilesloaded', () => {
         console.log('accuracy',this.map);

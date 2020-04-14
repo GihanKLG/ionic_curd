@@ -1,6 +1,8 @@
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
  
 @Component({
   selector: 'app-student-login',
@@ -13,7 +15,7 @@ export class StudentLoginPage implements OnInit {
   password: any = '';
   loginDisable = true;
  
-  constructor(private authService: AuthenticationService, public router: Router) { }
+  constructor(private authService: AuthenticationService, public router: Router, private http: HttpClient) { }
  
   ngOnInit() {
   }
@@ -31,11 +33,13 @@ export class StudentLoginPage implements OnInit {
   }
  
   login() {
-    this.authService.login();
+    var url = 'http://localhost/60plus/svr/login.php?user=yakandawala&pass=test123';
+    this.authService.login(url);
     this.authService.authenticationState.subscribe(state => {
       console.log(state);
       if (state) {
         this.router.navigate(['list']);
+        console.log(this.authService.session_id);
       } else {
         this.router.navigate(['login']);
       }

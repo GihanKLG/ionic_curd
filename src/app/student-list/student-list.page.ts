@@ -24,7 +24,6 @@ export class StudentListPage implements OnInit {
   getAllStudents() {
     //Get saved list of students
     this.apiService.getList().subscribe(response => {
-      console.log(response);
       this.studentsData = response;
     })
   }

@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { AuthenticationService } from './../services/authentication.service';
 
 
 declare var google;
@@ -21,10 +22,11 @@ export class ClustermapPage {
   infoWindow;
   public locat: any = [];
   public markers: any[] = [];
+  session_id: any = '';
 
   constructor(
     private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder, private http: HttpClient) {
+    private authService: AuthenticationService, private nativeGeocoder: NativeGeocoder, private http: HttpClient) {
   }
 
 
@@ -45,8 +47,14 @@ export class ClustermapPage {
       var map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      // this.session_id = this.authService.session_id;
+      this.authService.getAccessId().then(id => {
+       console.log(id);
+     
+      var url = 'http://localhost/googlemap/svr/report.php?action=read&session_id=' + id;
+      console.log(url);
 
-      this.http.get('http://localhost/googlemap/svr/report.php?action=read&session_id=ss9h138m6eptg7g4ffgn5p5511').subscribe((res:any) => {
+      this.http.get(url).subscribe((res:any) => {
         var location = res.details.Location;
         var j;
         var circle = [];
@@ -78,7 +86,7 @@ export class ClustermapPage {
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
-      })}).catch((error) => {
+      }); });}).catch((error) => {
         console.log('Error getting location', error);
       });
 

@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { MarkerCluster } from "@ionic-native/google-maps";
+import { AuthenticationService } from './../services/authentication.service';
 
 declare var google;
 declare var MarkerClusterer:any;
@@ -25,7 +26,7 @@ export class GoogleheatmapPage {
 
   constructor(
     private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder) {
+    private nativeGeocoder: NativeGeocoder, private authService: AuthenticationService) {
   }
 
 
@@ -71,6 +72,12 @@ export class GoogleheatmapPage {
     console.log(lattitude);
     console.log(longitude);
 
+    this.authService.getAccessId().then(id => {
+      console.log(id);
+    
+     var url = 'http://localhost/googlemap/svr/report.php?action=read&session_id=' + id;
+     console.log(url);
+    });
  
       var heatmapData = [
         new google.maps.LatLng(6.959515, 80.603027),
@@ -101,35 +108,35 @@ export class GoogleheatmapPage {
       });
       heatmap.setMap(this.map);
       
-    let points = [
-      {lat: 6.959515, lng: 80.603027}, // north west
-      {lat: 6.969550, lng: 80.603027}, // south west
-      {lat: 6.969550, lng: 80.614030}, // south east
-      {lat: 6.959515, lng: 80.614030}  // north east
-    ];
+    // let points = [
+    //   {lat: 6.959515, lng: 80.603027}, // north west
+    //   {lat: 6.969550, lng: 80.603027}, // south west
+    //   {lat: 6.969550, lng: 80.614030}, // south east
+    //   {lat: 6.959515, lng: 80.614030}  // north east
+    // ];
 
-    var polyline = new google.maps.Polygon({
-      map: this.map,
-      path: points,
-      'color' : '#AA00FF',
-      'width': 10,
-      'geodesic': true
-    });
+    // var polyline = new google.maps.Polygon({
+    //   map: this.map,
+    //   path: points,
+    //   'color' : '#AA00FF',
+    //   'width': 10,
+    //   'geodesic': true
+    // });
 
-    let points1 = [
-      {lat: 6.859515, lng: 80.603027}, // north west
-      {lat: 6.869550, lng: 80.603027}, // south west
-      {lat: 6.869550, lng: 80.614030}, // south east
-      {lat: 6.859515, lng: 80.614030}  // north east
-    ];
+    // let points1 = [
+    //   {lat: 6.859515, lng: 80.603027}, // north west
+    //   {lat: 6.869550, lng: 80.603027}, // south west
+    //   {lat: 6.869550, lng: 80.614030}, // south east
+    //   {lat: 6.859515, lng: 80.614030}  // north east
+    // ];
 
-    var polyline1 = new google.maps.Polygon({
-      map: this.map,
-      path: points,
-      'color' : '#AA00FF',
-      'width': 10,
-      'geodesic': true
-    });
+    // var polyline1 = new google.maps.Polygon({
+    //   map: this.map,
+    //   path: points,
+    //   'color' : '#AA00FF',
+    //   'width': 10,
+    //   'geodesic': true
+    // });
  
 
   }

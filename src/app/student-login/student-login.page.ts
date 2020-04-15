@@ -15,7 +15,7 @@ export class StudentLoginPage implements OnInit {
   password: any = '';
   loginDisable = true;
  
-  constructor(private authService: AuthenticationService, public router: Router, private http: HttpClient) { }
+  constructor(private authService: AuthenticationService, public router: Router, private storage: Storage, private http: HttpClient) { }
  
   ngOnInit() {
   }
@@ -32,17 +32,38 @@ export class StudentLoginPage implements OnInit {
     }
   }
  
+  // login() {
+  //   var url = 'http://localhost/googlemap/svr/login.php?user=' + this.userName + '&pass=' + this.password;
+  //   this.authService.login(url);
+  //   this.authService.authenticationState.subscribe(state => {
+  //     console.log(state);
+  //     if (state) {
+  //       this.authService.checkToken().then(id => {
+  //         console.log(id);
+  //         this.router.navigate(['clustermap']);
+  //       });
+  //     } else {
+  //       console.log('error authentication');
+  //       this.router.navigate(['login']);
+  //     }
+  //   });
+  // }
+
   login() {
-    var url = 'http://localhost/60plus/svr/login.php?user=yakandawala&pass=test123';
-    this.authService.login(url);
-    this.authService.authenticationState.subscribe(state => {
-      console.log(state);
-      if (state) {
-        this.router.navigate(['list']);
-        console.log(this.authService.session_id);
-      } else {
-        this.router.navigate(['login']);
-      }
+    this.loginDisable = true;
+    const url = 'http://localhost/googlemap/svr/login.php?user=' + this.userName + '&pass=' + this.password;
+     console.log(url);
+     this.http.get(url).subscribe((res:any) => {
+      const session_id = res.details.session_id;
+      // this.audit.debug(res);
+      this.storage.set('accessId', session_id).then( (savedId) => {
+        this.authService.accessId = savedId;
+        console.log(this.authService.accessId);
+        this.router.navigate(['clustermap']);
+      //   this.appData.accessId = savedId;
+      //   console.log( this.appData.accessId)
+
+      });
     });
   }
  

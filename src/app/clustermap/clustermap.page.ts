@@ -39,7 +39,7 @@ export class ClustermapPage {
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 7,
+        zoom: 10,
         scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }

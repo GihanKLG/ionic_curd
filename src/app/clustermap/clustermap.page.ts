@@ -38,8 +38,8 @@ export class ClustermapPage {
     this.geolocation.getCurrentPosition().then((resp) => {
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
-        center: {lat: 6.983618, lng: 80.771703},
-        zoom: 9,
+        center: latLng,
+        zoom: 7,
         scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
@@ -86,10 +86,44 @@ export class ClustermapPage {
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
+     
+        var place = latLng;
+        var leastposition = find_closest_marker(place, circle); 
+        
+        var icon = {
+          url: '../../assets/icon/pin.png',
+          scaledSize: new google.maps.Size(30, 30), // size
+        };
+      
+        var lesatminingcenter = new google.maps.Marker({
+          position: leastposition, //marker position
+          map: map, //map already created
+          icon: icon 
+        });
+                
       }); });}).catch((error) => {
         console.log('Error getting location', error);
       });
 
   }
 
+}
+
+function find_closest_marker(place, circle) {
+  var distances = [];
+  var closest = -1;
+  var i;
+  for (i = 0; i < circle.length; i++) {
+      var d = google.maps.geometry.spherical.computeDistanceBetween(circle[i].center, place);
+      distances[i] = d;
+      if (closest == -1 || d < distances[closest]) {
+          closest = i;
+      }
+  }
+  console.log(place);
+  var leastposition = circle[closest].center;
+
+  //this.markers.push(mark[i]);
+  console.log('Closest marker is: ' + circle[closest].center);
+  return leastposition;
 }

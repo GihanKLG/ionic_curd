@@ -100,6 +100,25 @@ export class ClustermapPage {
           map: map, //map already created
           icon: icon 
         });
+
+        var start = new google.maps.LatLng(6.2160990, 80.612310);
+        var end = new google.maps.LatLng(6.2160991, 80.612314);
+      
+        var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
+        directionsDisplay.setMap(map); // map should be already initialized.
+      
+        var request = {
+            origin : start,
+            destination : end,
+            travelMode : google.maps.TravelMode.DRIVING
+        };
+        var directionsService = new google.maps.DirectionsService(); 
+        directionsService.route(request, function(response, status) {
+          console.log(status);
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            }
+        });
                 
       }); });}).catch((error) => {
         console.log('Error getting location', error);
@@ -112,12 +131,14 @@ export class ClustermapPage {
 function find_closest_marker(place, circle) {
   var distances = [];
   var closest = -1;
+  var closesestdistance;
   var i;
   for (i = 0; i < circle.length; i++) {
       var d = google.maps.geometry.spherical.computeDistanceBetween(circle[i].center, place);
       distances[i] = d;
       if (closest == -1 || d < distances[closest]) {
           closest = i;
+          closesestdistance = d;
       }
   }
   console.log(place);
@@ -125,5 +146,7 @@ function find_closest_marker(place, circle) {
 
   //this.markers.push(mark[i]);
   console.log('Closest marker is: ' + circle[closest].center);
+  console.log('closest distance is: ' + closesestdistance + 'm');
   return leastposition;
 }
+

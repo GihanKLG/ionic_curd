@@ -40,9 +40,10 @@ export class GoogleheatmapPage {
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 18,
+        zoom: 10,
         //mapTypeId: 'satellite'
         mapTypeId: google.maps.MapTypeId.SATELLITE
+        //mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 
       this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);

@@ -58,22 +58,93 @@ export class ClustermapPage {
         var location = res.details.Location;
         var j;
         var circle = [];
+        var cubes
+        var s = 0;
+        var t = 0;
+        var u = 0;
+        var x = 0;
+        var y = 0;
 
         for(j=0;j<location.length;j++) {
             location[j].lat = Number(location[j].lat);
             location[j].lng = Number(location[j].lng);
-            circle[j] = new google.maps.Circle({
-            strokeColor: 'purple',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: 'black',
-            fillOpacity: 0.35,
-            map: map,
-            center: location[j],
-            radius: 5
-          });
-        }
+            cubes = Number(location[j].cubes);
+            if(cubes >= 1000) {
+              circle[j] = new google.maps.Circle({
+                strokeColor: 'red',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'black',
+                fillOpacity: 0.35,
+                map: map,
+                center: location[j],
+                radius: 20
+              });
+              x = x + 1;
+            }
 
+            else if(cubes >= 500) {
+              circle[j] = new google.maps.Circle({
+                strokeColor: 'orange',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'black',
+                fillOpacity: 0.35,
+                map: map,
+                center: location[j],
+                radius: 15
+              });
+              y = y + 1;
+            }
+
+            else if(cubes >= 300) {
+              circle[j] = new google.maps.Circle({
+                strokeColor: 'yellow',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'black',
+                fillOpacity: 0.35,
+                map: map,
+                center: location[j],
+                radius: 10
+              });
+              s = s + 1;
+            }
+
+            else if(cubes >= 200) {
+              circle[j] = new google.maps.Circle({
+                strokeColor: 'dark green',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'black',
+                fillOpacity: 0.35,
+                map: map,
+                center: location[j],
+                radius: 8
+              });
+              t = t + 1;
+            }
+
+            else {
+              circle[j] = new google.maps.Circle({
+                strokeColor: 'black',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'white',
+                fillOpacity: 0.35,
+                map: map,
+                center: location[j],
+                radius: 5
+              });
+              u = u + 1;
+            }
+
+        }
+        console.log('1000< '+ x);
+        console.log('500< '+ y);
+        console.log('300< '+ s);
+        console.log('200< '+ t);
+        console.log('200> '+ u);
         console.log(location);
         var markers = location.map(function(location, i) {
           return new google.maps.Marker({
@@ -101,24 +172,6 @@ export class ClustermapPage {
           icon: icon 
         });
 
-        var start = new google.maps.LatLng(6.2160990, 80.612310);
-        var end = new google.maps.LatLng(6.2160991, 80.612314);
-      
-        var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
-        directionsDisplay.setMap(map); // map should be already initialized.
-      
-        var request = {
-            origin : start,
-            destination : end,
-            travelMode : google.maps.TravelMode.DRIVING
-        };
-        var directionsService = new google.maps.DirectionsService(); 
-        directionsService.route(request, function(response, status) {
-          console.log(status);
-            if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-            }
-        });
                 
       }); });}).catch((error) => {
         console.log('Error getting location', error);

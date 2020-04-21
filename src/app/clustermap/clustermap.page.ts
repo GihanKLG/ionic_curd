@@ -173,7 +173,11 @@ export class ClustermapPage {
         });
 
                 
-      }); });}).catch((error) => {
+      });
+
+    
+    
+       });}).catch((error) => {
         console.log('Error getting location', error);
       });
 

@@ -59,11 +59,11 @@ export class ClustermapPage {
         var j;
         var circle = [];
         var cubes
-        var s = 0;
-        var t = 0;
-        var u = 0;
-        var x = 0;
-        var y = 0;
+        // var s = 0;
+        // var t = 0;
+        // var u = 0;
+        // var x = 0;
+        // var y = 0;
 
         for(j=0;j<location.length;j++) {
             location[j].lat = Number(location[j].lat);
@@ -80,7 +80,7 @@ export class ClustermapPage {
                 center: location[j],
                 radius: 20
               });
-              x = x + 1;
+             // x = x + 1;
             }
 
             else if(cubes >= 500) {
@@ -94,7 +94,7 @@ export class ClustermapPage {
                 center: location[j],
                 radius: 15
               });
-              y = y + 1;
+             // y = y + 1;
             }
 
             else if(cubes >= 300) {
@@ -108,7 +108,7 @@ export class ClustermapPage {
                 center: location[j],
                 radius: 10
               });
-              s = s + 1;
+              //s = s + 1;
             }
 
             else if(cubes >= 200) {
@@ -122,7 +122,7 @@ export class ClustermapPage {
                 center: location[j],
                 radius: 8
               });
-              t = t + 1;
+              //t = t + 1;
             }
 
             else {
@@ -136,15 +136,15 @@ export class ClustermapPage {
                 center: location[j],
                 radius: 5
               });
-              u = u + 1;
+             // u = u + 1;
             }
 
         }
-        console.log('1000< '+ x);
-        console.log('500< '+ y);
-        console.log('300< '+ s);
-        console.log('200< '+ t);
-        console.log('200> '+ u);
+        // console.log('1000< '+ x);
+        // console.log('500< '+ y);
+        // console.log('300< '+ s);
+        // console.log('200< '+ t);
+        // console.log('200> '+ u);
         console.log(location);
         var markers = location.map(function(location, i) {
           return new google.maps.Marker({

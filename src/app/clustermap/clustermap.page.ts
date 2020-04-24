@@ -57,89 +57,90 @@ export class ClustermapPage {
       this.http.get(url).subscribe((res:any) => {
         var location = res.details.Location;
         var j;
-        var circle = [];
-        var cubes
-        // var s = 0;
-        // var t = 0;
-        // var u = 0;
-        // var x = 0;
-        // var y = 0;
+        
+        // var cubes
+        // // var s = 0;
+        // // var t = 0;
+        // // var u = 0;
+        // // var x = 0;
+        // // var y = 0;
 
         for(j=0;j<location.length;j++) {
             location[j].lat = Number(location[j].lat);
             location[j].lng = Number(location[j].lng);
-            cubes = Number(location[j].cubes);
-            if(cubes >= 1000) {
-              circle[j] = new google.maps.Circle({
-                strokeColor: 'red',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: 'black',
-                fillOpacity: 0.35,
-                map: map,
-                center: location[j],
-                radius: 20
-              });
-             // x = x + 1;
-            }
+        }    
+        //     cubes = Number(location[j].cubes);
+        //     if(cubes >= 1000) {
+        //       circle[j] = new google.maps.Circle({
+        //         strokeColor: 'red',
+        //         strokeOpacity: 0.8,
+        //         strokeWeight: 2,
+        //         fillColor: 'black',
+        //         fillOpacity: 0.35,
+        //         map: map,
+        //         center: location[j],
+        //         radius: 20
+        //       });
+        //      // x = x + 1;
+        //     }
 
-            else if(cubes >= 500) {
-              circle[j] = new google.maps.Circle({
-                strokeColor: 'orange',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: 'black',
-                fillOpacity: 0.35,
-                map: map,
-                center: location[j],
-                radius: 15
-              });
-             // y = y + 1;
-            }
+        //     else if(cubes >= 500) {
+        //       circle[j] = new google.maps.Circle({
+        //         strokeColor: 'orange',
+        //         strokeOpacity: 0.8,
+        //         strokeWeight: 2,
+        //         fillColor: 'black',
+        //         fillOpacity: 0.35,
+        //         map: map,
+        //         center: location[j],
+        //         radius: 15
+        //       });
+        //      // y = y + 1;
+        //     }
 
-            else if(cubes >= 300) {
-              circle[j] = new google.maps.Circle({
-                strokeColor: 'yellow',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: 'black',
-                fillOpacity: 0.35,
-                map: map,
-                center: location[j],
-                radius: 10
-              });
-              //s = s + 1;
-            }
+        //     else if(cubes >= 300) {
+        //       circle[j] = new google.maps.Circle({
+        //         strokeColor: 'yellow',
+        //         strokeOpacity: 0.8,
+        //         strokeWeight: 2,
+        //         fillColor: 'black',
+        //         fillOpacity: 0.35,
+        //         map: map,
+        //         center: location[j],
+        //         radius: 10
+        //       });
+        //       //s = s + 1;
+        //     }
 
-            else if(cubes >= 200) {
-              circle[j] = new google.maps.Circle({
-                strokeColor: 'dark green',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: 'black',
-                fillOpacity: 0.35,
-                map: map,
-                center: location[j],
-                radius: 8
-              });
-              //t = t + 1;
-            }
+        //     else if(cubes >= 200) {
+        //       circle[j] = new google.maps.Circle({
+        //         strokeColor: 'dark green',
+        //         strokeOpacity: 0.8,
+        //         strokeWeight: 2,
+        //         fillColor: 'black',
+        //         fillOpacity: 0.35,
+        //         map: map,
+        //         center: location[j],
+        //         radius: 8
+        //       });
+        //       //t = t + 1;
+        //     }
 
-            else {
-              circle[j] = new google.maps.Circle({
-                strokeColor: 'black',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: 'white',
-                fillOpacity: 0.35,
-                map: map,
-                center: location[j],
-                radius: 5
-              });
-             // u = u + 1;
-            }
+        //     else {
+        //       circle[j] = new google.maps.Circle({
+        //         strokeColor: 'black',
+        //         strokeOpacity: 0.8,
+        //         strokeWeight: 2,
+        //         fillColor: 'white',
+        //         fillOpacity: 0.35,
+        //         map: map,
+        //         center: location[j],
+        //         radius: 5
+        //       });
+        //      // u = u + 1;
+        //     }
 
-        }
+       // }
         // console.log('1000< '+ x);
         // console.log('500< '+ y);
         // console.log('300< '+ s);
@@ -158,22 +159,66 @@ export class ClustermapPage {
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
      
+          });  
+          
+        var url = 'http://localhost/googlemap/svr/report.php?action=division_read&session_id=' + id;
+        console.log(url);
+
+        this.http.get(url).subscribe((res:any) => {
+
+          var circles = [];
+          var result = res.details.Location; 
+          console.log(result);
+          var i;
+          // var k = 0;
+          for(i=0;i<result.length;i++) {
+              const lt = result[i].lat;
+              const lat = lt.split(",");
+  
+              const ln = result[i].lng;
+              const lng = ln.split(",");
+  
+              var j
+              for(j=0;j<lat.length;j++) {
+                var latitude = Number(lat[j]);
+                var longitude = Number(lng[j]);
+                var circle = new google.maps.Circle({
+                strokeColor: 'black',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'white',
+                fillOpacity: 0.35,
+                map: map,
+                center: {lat: latitude, lng: longitude},
+                radius: 5 
+                }); 
+                circles.push(circle); 
+                // k = k + 1                 
+            }
+            // console.log(k);
+          } 
+       
         var place = latLng;
-        var leastposition = find_closest_marker(place, circle); 
+        var leastposition = find_closest_marker(place, circles); 
         
         var icon = {
           url: '../../assets/icon/pin.png',
           scaledSize: new google.maps.Size(30, 30), // size
         };
-      
+        
+        var currentlocation = new google.maps.Marker ({
+          position: latLng, //marker position
+          map: map, //map already created
+          icon: icon
+        });
         var lesatminingcenter = new google.maps.Marker({
           position: leastposition, //marker position
           map: map, //map already created
-          icon: icon 
+          // icon: icon 
         });
 
-                
-      });
+      });         
+      
 
     
     

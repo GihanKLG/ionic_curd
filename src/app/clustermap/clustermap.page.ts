@@ -57,95 +57,12 @@ export class ClustermapPage {
       this.http.get(url).subscribe((res:any) => {
         var location = res.details.Location;
         var j;
-        
-        // var cubes
-        // // var s = 0;
-        // // var t = 0;
-        // // var u = 0;
-        // // var x = 0;
-        // // var y = 0;
 
         for(j=0;j<location.length;j++) {
             location[j].lat = Number(location[j].lat);
             location[j].lng = Number(location[j].lng);
         }    
-        //     cubes = Number(location[j].cubes);
-        //     if(cubes >= 1000) {
-        //       circle[j] = new google.maps.Circle({
-        //         strokeColor: 'red',
-        //         strokeOpacity: 0.8,
-        //         strokeWeight: 2,
-        //         fillColor: 'black',
-        //         fillOpacity: 0.35,
-        //         map: map,
-        //         center: location[j],
-        //         radius: 20
-        //       });
-        //      // x = x + 1;
-        //     }
 
-        //     else if(cubes >= 500) {
-        //       circle[j] = new google.maps.Circle({
-        //         strokeColor: 'orange',
-        //         strokeOpacity: 0.8,
-        //         strokeWeight: 2,
-        //         fillColor: 'black',
-        //         fillOpacity: 0.35,
-        //         map: map,
-        //         center: location[j],
-        //         radius: 15
-        //       });
-        //      // y = y + 1;
-        //     }
-
-        //     else if(cubes >= 300) {
-        //       circle[j] = new google.maps.Circle({
-        //         strokeColor: 'yellow',
-        //         strokeOpacity: 0.8,
-        //         strokeWeight: 2,
-        //         fillColor: 'black',
-        //         fillOpacity: 0.35,
-        //         map: map,
-        //         center: location[j],
-        //         radius: 10
-        //       });
-        //       //s = s + 1;
-        //     }
-
-        //     else if(cubes >= 200) {
-        //       circle[j] = new google.maps.Circle({
-        //         strokeColor: 'dark green',
-        //         strokeOpacity: 0.8,
-        //         strokeWeight: 2,
-        //         fillColor: 'black',
-        //         fillOpacity: 0.35,
-        //         map: map,
-        //         center: location[j],
-        //         radius: 8
-        //       });
-        //       //t = t + 1;
-        //     }
-
-        //     else {
-        //       circle[j] = new google.maps.Circle({
-        //         strokeColor: 'black',
-        //         strokeOpacity: 0.8,
-        //         strokeWeight: 2,
-        //         fillColor: 'white',
-        //         fillOpacity: 0.35,
-        //         map: map,
-        //         center: location[j],
-        //         radius: 5
-        //       });
-        //      // u = u + 1;
-        //     }
-
-       // }
-        // console.log('1000< '+ x);
-        // console.log('500< '+ y);
-        // console.log('300< '+ s);
-        // console.log('200< '+ t);
-        // console.log('200> '+ u);
         console.log(location);
         var markers = location.map(function(location, i) {
           return new google.maps.Marker({
@@ -154,9 +71,9 @@ export class ClustermapPage {
           });
         });
 
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        // // Add a marker clusterer to manage the markers.
+        // var markerCluster = new MarkerClusterer(map, markers,
+        //     {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
      
           });  
@@ -177,27 +94,49 @@ export class ClustermapPage {
   
               const ln = result[i].lng;
               const lng = ln.split(",");
+
+              var count = result[i].count;
+              console.log(count);
   
               var j
               for(j=0;j<lat.length;j++) {
                 var latitude = Number(lat[j]);
                 var longitude = Number(lng[j]);
+                var r = 7;
+                var stroke = 'black';
+                if(count < 200 && count > 190) {
+                  r = 2;
+                  stroke = 'red';
+                } 
+                else if(count > 150) {
+                  r = 3;
+                  stroke = 'yellow';
+                }
+                else if(count > 100) {
+                  r = 4;
+                  stroke = 'green';
+                }
+                else if(count > 50) {
+                  r = 5;
+                  stroke = 'brown';
+                }
                 var circle = new google.maps.Circle({
-                strokeColor: 'black',
+                strokeColor: stroke,
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
                 fillColor: 'white',
                 fillOpacity: 0.35,
                 map: map,
                 center: {lat: latitude, lng: longitude},
-                radius: 5 
+                radius: r
                 }); 
-                circles.push(circle); 
+                circles.push(circle);
+                // console.log(j);
                 // k = k + 1                 
             }
             // console.log(k);
           } 
-       
+        console.log(circles);
         var place = latLng;
         var leastposition = find_closest_marker(place, circles); 
         
@@ -219,12 +158,10 @@ export class ClustermapPage {
 
       });         
       
-
-    
-    
-       });}).catch((error) => {
-        console.log('Error getting location', error);
-      });
+       });
+          }).catch((error) => {
+            console.log('Error getting location', error);
+        });
 
   }
 

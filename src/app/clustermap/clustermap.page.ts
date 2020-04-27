@@ -3,6 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from './../services/authentication.service';
+//import { AlertController } from 'ionic-angular';
 
 
 declare var google;
@@ -71,9 +72,9 @@ export class ClustermapPage {
           });
         });
 
-        // // Add a marker clusterer to manage the markers.
-        // var markerCluster = new MarkerClusterer(map, markers,
-        //     {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
      
           });  
@@ -85,7 +86,7 @@ export class ClustermapPage {
 
           var circles = [];
           var result = res.details.Location; 
-          console.log(result);
+          console.log(result.length);
           var i;
           // var k = 0;
           for(i=0;i<result.length;i++) {
@@ -96,28 +97,31 @@ export class ClustermapPage {
               const lng = ln.split(",");
 
               var count = result[i].count;
-              console.log(count);
+              var r = result[i].min_distance;
+              console.log(i);
+              console.log(r);
   
               var j
               for(j=0;j<lat.length;j++) {
                 var latitude = Number(lat[j]);
                 var longitude = Number(lng[j]);
-                var r = 7;
+                // var r = 7;
                 var stroke = 'black';
-                if(count < 200 && count > 190) {
-                  r = 2;
+                // var r = 
+                if(r == 10) {
+                  // r = 2;
                   stroke = 'red';
                 } 
-                else if(count > 150) {
-                  r = 3;
+                else if( r > 5) {
+                  // r = 3;
                   stroke = 'yellow';
                 }
-                else if(count > 100) {
-                  r = 4;
+                else if(r > 2) {
+                  // r = 4;
                   stroke = 'green';
                 }
-                else if(count > 50) {
-                  r = 5;
+                else {
+                  // r = 5;
                   stroke = 'brown';
                 }
                 var circle = new google.maps.Circle({

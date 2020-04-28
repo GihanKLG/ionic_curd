@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { error } from 'protractor';
  
 @Component({
   selector: 'app-student-login',
@@ -54,6 +55,9 @@ export class StudentLoginPage implements OnInit {
     const url = 'http://localhost/googlemap/svr/login.php?user=' + this.userName + '&pass=' + this.password;
      console.log(url);
      this.http.get(url).subscribe((res:any) => {
+      const status = res.status;
+      console.log(status);
+      if(status) {
       const session_id = res.details.session_id;
       // this.audit.debug(res);
       this.storage.set('accessId', session_id).then( (savedId) => {
@@ -62,8 +66,12 @@ export class StudentLoginPage implements OnInit {
         this.router.navigate(['clustermap']);
       //   this.appData.accessId = savedId;
       //   console.log( this.appData.accessId)
-
-      });
+        
+      }); } else {
+        alert('please check your username and password');
+      }
+    }, error => {
+      alert('please check your connection');
     });
   }
  

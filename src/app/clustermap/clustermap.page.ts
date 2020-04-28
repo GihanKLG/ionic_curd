@@ -142,7 +142,9 @@ export class ClustermapPage {
           } 
         console.log(circles);
         var place = latLng;
-        var leastposition = find_closest_marker(place, circles); 
+        var leastPositionData = find_closest_marker(place, circles); 
+        var leastposition = leastPositionData['leastposition'];
+        console.log(leastPositionData);
         
         var icon = {
           url: '../../assets/icon/pin.png',
@@ -160,11 +162,21 @@ export class ClustermapPage {
           // icon: icon 
         });
 
+        var closesestdistance = leastPositionData['closesestdistance'];
+        var needDistance = leastPositionData['needDistance'];
+
+        if(closesestdistance <= needDistance) {
+          console.log('You can add dispatch');
+        } else {
+          alert('You are not in minning site');
+        }
+
       });         
       
        });
           }).catch((error) => {
             console.log('Error getting location', error);
+            alert('Error getting location');
         });
 
   }
@@ -186,10 +198,16 @@ function find_closest_marker(place, circle) {
   }
   console.log(place);
   var leastposition = circle[closest].center;
-
+  var needDistance = circle[closest].radius;
+  var leastPositionData = [];
   //this.markers.push(mark[i]);
+  leastPositionData['leastposition'] = leastposition;
+  leastPositionData['needDistance'] = needDistance;
+  leastPositionData['closesestdistance'] = closesestdistance;
   console.log('Closest marker is: ' + circle[closest].center);
   console.log('closest distance is: ' + closesestdistance + 'm');
-  return leastposition;
+  console.log('needed distance is: ' + needDistance + 'm');
+  console.log(leastposition);
+  return leastPositionData;
 }
 

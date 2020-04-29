@@ -132,7 +132,9 @@ export class ClustermapPage {
                 fillOpacity: 0.35,
                 map: map,
                 center: {lat: latitude, lng: longitude},
-                radius: r
+                radius: r,
+                name : 'address'
+                // address: this.address
                 }); 
                 circles.push(circle);
                 // console.log(j);
@@ -161,6 +163,21 @@ export class ClustermapPage {
           map: map, //map already created
           // icon: icon 
         });
+
+      //   let options: NativeGeocoderOptions = {
+      //     useLocale: true,
+      //     maxResults: 5
+      // };
+      
+      // this.nativeGeocoder.reverseGeocode(6.2416854, 80.530781, options)
+      //   .then((result: NativeGeocoderResult[]) => console.log(JSON.stringify(result[0])))
+      //   .catch((error: any) => console.log(error));
+      // let geocoder = new google.maps.Geocoder;
+      // let sitelocation = {lat: 6.2416854, lng: 80.530781};
+      // geocoder.geocode({'location': sitelocation}, (results, status) => {
+      //   console.log(results); // read data from here
+      //   console.log(status);
+      // });
 
         var closesestdistance = leastPositionData['closesestdistance'];
         var needDistance = leastPositionData['needDistance'];
@@ -199,6 +216,7 @@ function find_closest_marker(place, circle) {
   console.log(place);
   var leastposition = circle[closest].center;
   var needDistance = circle[closest].radius;
+  var closestaddress = circle[closest].name;
   var leastPositionData = [];
   //this.markers.push(mark[i]);
   leastPositionData['leastposition'] = leastposition;
@@ -207,6 +225,7 @@ function find_closest_marker(place, circle) {
   console.log('Closest marker is: ' + circle[closest].center);
   console.log('closest distance is: ' + closesestdistance + 'm');
   console.log('needed distance is: ' + needDistance + 'm');
+  console.log('closest address is: ' + closestaddress);
   console.log(leastposition);
   return leastPositionData;
 }

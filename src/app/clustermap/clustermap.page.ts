@@ -3,6 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from './../services/authentication.service';
+import { Circle } from '@ionic-native/google-maps';
 //import { AlertController } from 'ionic-angular';
 
 
@@ -21,6 +22,7 @@ export class ClustermapPage {
   address:string;
   maxZoomService;
   infoWindow;
+  ma : any;
   public locat: any = [];
   public markers: any[] = [];
   session_id: any = '';
@@ -34,8 +36,8 @@ export class ClustermapPage {
   ngOnInit() {
     this.loadMap();
   }
-
-  loadMap() {
+   
+    loadMap() {
     this.geolocation.getCurrentPosition().then((resp) => {
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
@@ -46,6 +48,8 @@ export class ClustermapPage {
       }
 
       var map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+      this.ma = map;
 
       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       // this.session_id = this.authService.session_id;
@@ -86,9 +90,11 @@ export class ClustermapPage {
 
           var circles = [];
           var result = res.details.Location; 
-          console.log(result.length);
+          var info = [];
+         // console.log(result.length);
           var i;
           // var k = 0;
+         // var infowindow = new google.maps.InfoWindow();
           for(i=0;i<result.length;i++) {
               const lt = result[i].lat;
               const lat = lt.split(",");
@@ -97,14 +103,18 @@ export class ClustermapPage {
               const lng = ln.split(",");
 
               var count = result[i].count;
-              var r = result[i].min_distance;
-              console.log(i);
-              console.log(r);
+              var rad = result[i].min_distance;
+              var state = result[i].Division
+              // console.log(i);
+              // console.log(rad);
+              console.log(state);
   
               var j
+             
               for(j=0;j<lat.length;j++) {
                 var latitude = Number(lat[j]);
                 var longitude = Number(lng[j]);
+                var r = rad[j];
                 // var r = 7;
                 var stroke = 'black';
                 // var r = 
@@ -133,15 +143,52 @@ export class ClustermapPage {
                 map: map,
                 center: {lat: latitude, lng: longitude},
                 radius: r,
-                name : 'address'
+                title: state
                 // address: this.address
                 }); 
                 circles.push(circle);
+
+                circle.setMap(map);
+               this.addInfoWindowToMarker(circle);
+
+              //   google.maps.event.addListener(circle, 'click', function() {
+              //     infowindow.setContent(state);
+              //     infowindow.open(map, circle);
+              // });
+                
+                //var opened_info = new google.maps.InfoWindow();
+                // var infowindow = new google.maps.InfoWindow(
+                //   {
+                //       content:"<b>" + state + "</b>" + "</br>",
+                //   });
+                // var len = circles.length - 1;
+                // console.log(len);
+                // info[i] = infowindow;
+                // circle.infowindow.name = state;
+                // circle.setMap(map);
+                // google.maps.event.addListener(circle, 'click', showInfo);
+
+                // circle.addListener('click', function() {
+                //   console.log(infowindow);
+                //   infowindow.open(map, circle);
+                // });
+
+              //   function showInfo(event) {
+              //      opened_info.close();
+              //      console.log(this.infoWindow.name);
+              //     if (opened_info.name != this.infowindow.name) {
+              //         this.infowindow.setPosition(event.latLng);
+              //         this.infowindow.open(map);
+              //         opened_info = this.infowindow;
+              //     }
+              // }
+                
                 // console.log(j);
                 // k = k + 1                 
             }
             // console.log(k);
           } 
+            
         console.log(circles);
         var place = latLng;
         var leastPositionData = find_closest_marker(place, circles); 
@@ -158,11 +205,27 @@ export class ClustermapPage {
           map: map, //map already created
           icon: icon
         });
+        
+        var closestaddress = leastPositionData['closestaddress']
         var lesatminingcenter = new google.maps.Marker({
           position: leastposition, //marker position
           map: map, //map already created
+          animation: google.maps.Animation.DROP,
+          title: closestaddress
           // icon: icon 
         });
+
+        // var lesatminingcircle = leastPositionData['leastcircle'];
+        // lesatminingcenter.setMap(this.ma);
+        // this.addInfoWindowToMarker(lesatminingcircle);
+        // google.maps.event.addListener(lesatminingcenter, 'click', function(){
+        //   let infowindow = new google.maps.InfoWindow({
+        //     content: closestaddress
+        //   });
+        //   infowindow.open(map,lesatminingcenter);
+        // })
+      
+      
 
       //   let options: NativeGeocoderOptions = {
       //     useLocale: true,
@@ -197,6 +260,19 @@ export class ClustermapPage {
         });
 
   }
+  
+  addInfoWindowToMarker(event) {
+    var infoWindowContent = '<div id="content"><h1 id="firstHeading" class="firstHeading">' + event.title + '</h1></div>';
+    console.log(infoWindowContent);
+    var infoWindow = new google.maps.InfoWindow({
+      content: infoWindowContent
+    });
+    event.addListener('click', () => {
+      console.log(this.ma);
+      console.log(event);
+      infoWindow.open(this.ma);
+    });
+  }
 
 }
 
@@ -214,19 +290,42 @@ function find_closest_marker(place, circle) {
       }
   }
   console.log(place);
+  var lesatminingcircle = circle[closest];
+  console.log(lesatminingcircle);
+  // addInfoWindowToMarker(lesatminingcircle);
   var leastposition = circle[closest].center;
   var needDistance = circle[closest].radius;
-  var closestaddress = circle[closest].name;
+  var closestaddress = circle[closest].title;
   var leastPositionData = [];
+  
   //this.markers.push(mark[i]);
   leastPositionData['leastposition'] = leastposition;
   leastPositionData['needDistance'] = needDistance;
   leastPositionData['closesestdistance'] = closesestdistance;
+  leastPositionData['closestaddress'] = closestaddress;
+  leastPositionData['leastcircle'] = lesatminingcircle;
   console.log('Closest marker is: ' + circle[closest].center);
-  console.log('closest distance is: ' + closesestdistance + 'm');
-  console.log('needed distance is: ' + needDistance + 'm');
+  console.log('closest distance is: ' + closesestdistance + ' m');
+  console.log('needed distance is: ' + needDistance + ' m');
   console.log('closest address is: ' + closestaddress);
   console.log(leastposition);
   return leastPositionData;
 }
+
+// function addInfoWindowToMarker(marker) {
+//   var infoWindowContent = '<div id="content"><h1 id="firstHeading" class="firstHeading">' + marker.title + '</h1></div>';
+//   console.log(infoWindowContent);
+//   var infoWindow = new google.maps.InfoWindow({
+//     content: infoWindowContent
+//   });
+//   marker.addListener('click', () => {
+//     console.log(this.ma);
+//     console.log(marker);
+//     infoWindow.open(this.ma, marker);
+//   });
+// }
+
+
+
+
 

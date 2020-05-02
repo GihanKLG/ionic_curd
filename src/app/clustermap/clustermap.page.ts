@@ -69,17 +69,37 @@ export class ClustermapPage {
         }    
 
         console.log(location);
+        var InforObj = [];
         var markers = location.map(function(location, i) {
-          return new google.maps.Marker({
+          // console.log(i);
+          var marker = new google.maps.Marker({
             position: location,
             label: labels[i % labels.length]
+            // label: "UDAYAGIRIGAMA SOUTH"
           });
+          var contentString = '<div id="content"><h1 color = "red">' + marker.label +
+                            '</h1><p>Lorem ipsum dolor sit amet, vix mutat posse suscipit id, vel ea tantas omittam detraxit.</p></div>';
+
+          const infowindow = new google.maps.InfoWindow({
+              content: contentString,
+              maxWidth: 200
+          });
+          
+          marker.addListener('click', function () {
+            console.log(marker.label);
+            //closeOtherInfo();
+            infowindow.open(marker.get('map'), marker);
+            InforObj[0] = infowindow;
+        });
+          //this.addInfoWindowToMarker(marker);
+          return marker;
         });
 
         // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
+            //this.addInfoWindowToMarker(markers);
      
           });  
           
@@ -107,7 +127,7 @@ export class ClustermapPage {
               var state = result[i].Division
               // console.log(i);
               // console.log(rad);
-              console.log(state);
+              //console.log(state);
   
               var j
              
@@ -149,7 +169,7 @@ export class ClustermapPage {
                 circles.push(circle);
 
                 circle.setMap(map);
-               this.addInfoWindowToMarker(circle);
+               //this.addInfoWindowToMarker(circle);
 
               //   google.maps.event.addListener(circle, 'click', function() {
               //     infowindow.setContent(state);
@@ -214,7 +234,7 @@ export class ClustermapPage {
           title: closestaddress
           // icon: icon 
         });
-
+        this.addInfoWindowToMarker(lesatminingcenter);
         // var lesatminingcircle = leastPositionData['leastcircle'];
         // lesatminingcenter.setMap(this.ma);
         // this.addInfoWindowToMarker(lesatminingcircle);
@@ -262,17 +282,24 @@ export class ClustermapPage {
   }
   
   addInfoWindowToMarker(event) {
-    var infoWindowContent = '<div id="content"><h1 id="firstHeading" class="firstHeading">' + event.title + '</h1></div>';
-    console.log(infoWindowContent);
-    var infoWindow = new google.maps.InfoWindow({
-      content: infoWindowContent
-    });
-    event.addListener('click', () => {
-      console.log(this.ma);
-      console.log(event);
-      infoWindow.open(this.ma);
-    });
+    // var size = markers.length;
+    // var i;
+    // for(i=0;i<size;i++) {
+    // var event = markers[i]; 
+    
+  var infoWindowContent = '<div id="content"><h1 id="firstHeading" class="firstHeading">' + event.label + '</h1></div>';
+  console.log(infoWindowContent);
+  var infoWindow = new google.maps.InfoWindow({
+    content: infoWindowContent
+  });
+  event.addListener('click', () => {
+    // console.log(this.ma);
+    // console.log(event);
+    console.log(event.label); 
+    infoWindow.open(this.ma, event);
+  });
   }
+//} 
 
 }
 

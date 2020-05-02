@@ -62,10 +62,15 @@ export class ClustermapPage {
       this.http.get(url).subscribe((res:any) => {
         var location = res.details.Location;
         var j;
+        var division = [];
+        // var seq = [];
 
         for(j=0;j<location.length;j++) {
             location[j].lat = Number(location[j].lat);
             location[j].lng = Number(location[j].lng);
+            division[j] = location[j].Division;
+            // seq[j] = location[j].seq;
+            console.log(id[j]);
         }    
 
         console.log(location);
@@ -77,8 +82,7 @@ export class ClustermapPage {
             label: labels[i % labels.length]
             // label: "UDAYAGIRIGAMA SOUTH"
           });
-          var contentString = '<div id="content"><h1 color = "red">' + marker.label +
-                            '</h1><p>Lorem ipsum dolor sit amet, vix mutat posse suscipit id, vel ea tantas omittam detraxit.</p></div>';
+          var contentString = '<div id="content"><p style="color:red">' + division[i] + '</p></div>';
 
           const infowindow = new google.maps.InfoWindow({
               content: contentString,

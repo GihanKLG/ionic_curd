@@ -52,45 +52,38 @@ export class GoogleheatmapPage {
       
       this.authService.getAccessId().then(id => {
       console.log(id);
-      var url = 'http://localhost/googlemap/svr/report.php?action=division_read&session_id=' + id;
+      var url = 'https://nominatim.openstreetmap.org/search.php?q=Matara+District&polygon_geojson=1&format=json';
       console.log(url);
 
       this.http.get(url).subscribe((res:any) => { 
-        var result = res.details.Location; 
-        //console.log(result);
-        var i;
-        var k = 0;
-        for(i=0;i<result.length;i++) {
-          if(result[i].count > 2) {
-            const lt = result[i].lat;
-            const lat = lt.split(",");
+       var location =  res[0].geojson.coordinates[0];
+      //  console.log(location);
+       console.log(location.length);
+       var i;
+       var city = [];
+       for(i=0;i<location.length;i++) {
+        // location[i].lat = location[i][0];
+        // location[i].lng = location[i][1];
+        city.push({lat: location[i][1], lng: location[i][0]});
+       }
+       console.log(city);
+       var triangleCoords = [
+        {lat: 80.5207784, lng: -80.190},
+        {lat: 18.466, lng: -66.118},
+        {lat: 32.321, lng: -64.757},
+        {lat: 25.774, lng: -80.190}
+      ];
+       var bermudaTriangle = new google.maps.Polygon({
+        paths: city,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35
+      });
 
-            const ln = result[i].lng;
-            const lng = ln.split(",");
-
-            var j
-            var locations = [];
-            for(j=0;j<lat.length;j++) {
-              var latitude = Number(lat[j]);
-              var longitude = Number(lng[j]);
-              locations.push({lat: latitude, lng: longitude});
-              
-            }
-            console.log(locations);
-          //   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-          //   var markers = locations.map(function(location, i) {
-          //     return new google.maps.Marker({
-          //       position: location,
-          //       label: labels[i % labels.length]
-          //     });
-          //   });
-    
-          //   // Add a marker clusterer to manage the markers.
-          //   var markerCluster = new MarkerClusterer(map, markers,
-          //       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-        
-          }
-        }
+      console.log(triangleCoords);
+      bermudaTriangle.setMap(map);
 
        }); 
       }); 
@@ -98,47 +91,9 @@ export class GoogleheatmapPage {
       console.log('Error getting location', error);
     });
 
-    // this.directionsDisplay.setMap(this.map);
+   
   }
 
-  // getAddressFromCoords(lattitude, longitude) {
-  //   console.log("getAddressFromCoords "+lattitude+" "+longitude);
-  //   let options: NativeGeocoderOptions = {
-  //     useLocale: true,
-  //     maxResults: 5
-  //   };
-  //   console.log(lattitude);
-  //   console.log(longitude);
 
-  //   this.authService.getAccessId().then(id => {
-  //     console.log(id);
-    
-  //    var url = 'http://localhost/googlemap/svr/report.php?action=read&session_id=' + id;
-  //    console.log(url);
-
-  //    this.http.get(url).subscribe((res:any) => { 
-      
-  //     var location = res.details.Location;
-  //     var i;
-  //     var heatmapData = [];
-
-  //     for(i=0;i<location.length;i++) {
-  //       var lat = Number(location[i].lat);
-  //       var lng = Number(location[i].lng);
-
-  //       heatmapData[i] = new google.maps.LatLng(lat, lng);
-  //       //console.log(heatmapData[i]);
-  //     } 
-
-  //     var pointArray = new google.maps.MVCArray(heatmapData);
-  //     var heatmap = new google.maps.visualization.HeatmapLayer({
-  //       data: pointArray
-  //     });
-  //     heatmap.setMap(this.map);
-
-  //   });
-
-  // });
-  // }
 
 }

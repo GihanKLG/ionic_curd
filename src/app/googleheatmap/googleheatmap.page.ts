@@ -67,13 +67,13 @@ export class GoogleheatmapPage {
         city.push({lat: location[i][1], lng: location[i][0]});
        }
        console.log(city);
-       var triangleCoords = [
-        {lat: 80.5207784, lng: -80.190},
-        {lat: 18.466, lng: -66.118},
-        {lat: 32.321, lng: -64.757},
-        {lat: 25.774, lng: -80.190}
-      ];
-       var bermudaTriangle = new google.maps.Polygon({
+      //  var triangleCoords = [
+      //   {lat: 80.5207784, lng: -80.190},
+      //   {lat: 18.466, lng: -66.118},
+      //   {lat: 32.321, lng: -64.757},
+      //   {lat: 25.774, lng: -80.190}
+      // ];
+       var cityPolygone = new google.maps.Polygon({
         paths: city,
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
@@ -82,8 +82,8 @@ export class GoogleheatmapPage {
         fillOpacity: 0.35
       });
 
-      console.log(triangleCoords);
-      bermudaTriangle.setMap(map);
+      console.log(cityPolygone);
+      cityPolygone.setMap(map);
 
        }); 
       }); 

@@ -338,18 +338,7 @@ function find_closest_marker(place, circle) {
   return leastPositionData;
 }
 
-// function addInfoWindowToMarker(marker) {
-//   var infoWindowContent = '<div id="content"><h1 id="firstHeading" class="firstHeading">' + marker.title + '</h1></div>';
-//   console.log(infoWindowContent);
-//   var infoWindow = new google.maps.InfoWindow({
-//     content: infoWindowContent
-//   });
-//   marker.addListener('click', () => {
-//     console.log(this.ma);
-//     console.log(marker);
-//     infoWindow.open(this.ma, marker);
-//   });
-// }
+
 
 
 

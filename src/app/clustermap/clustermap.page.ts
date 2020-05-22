@@ -36,6 +36,14 @@ export class ClustermapPage {
 
   loadMap() {
     this.geolocation.getCurrentPosition().then((resp) => {
+
+      var d = new Date();
+      var h =  d.getHours();
+      var m = d.getMinutes();
+      var s = d.getSeconds();
+      var n = d.getMilliseconds();
+      console.log('time for get current location & start to load map -'+h+':'+m+':'+s+':'+n);
+
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
         center: latLng,
@@ -43,16 +51,41 @@ export class ClustermapPage {
         scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
-
+      
       var map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+      //get time
+      d = new Date();
+      h =  d.getHours();
+      m = d.getMinutes();
+      s = d.getSeconds();
+      n = d.getMilliseconds();
+      console.log('end time load google map -'+h+':'+m+':'+s+':'+n);
 
       this.ma = map;
 
       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       this.authService.getAccessId().then(id => {
       var url = 'http://localhost/googlemap/svr/report.php?action=read&location=LatLng'+latLng+'&session_id=' + id;
+
+      //get time
+      d = new Date();
+      h =  d.getHours();
+      m = d.getMinutes();
+      s = d.getSeconds();
+      n = d.getMilliseconds();
+      console.log('Time that call backend Api (action:read) -'+h+':'+m+':'+s+':'+n);
       
         this.http.get(url).subscribe((res: any) => {
+
+          //get time
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that get backend response (action:read) -'+h+':'+m+':'+s+':'+n);
+
           var location = res.details.Location;
           var j;
           var division = [];

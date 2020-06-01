@@ -70,7 +70,7 @@ export class AuthenticationService {
     return new Promise((resolve: any, reject: any) => {
     this.storage.set('accessId', null).then((savedId) => {
       this.accessId = null;
-      const url = 'http://localhost/googlemap/svr/' + 'access.php?action=logout&session_id' + this.accessId;
+      const url = 'http://localhost/googlemap/svr/' + 'access.php?action=logout&session_id=' + this.accessId;
       this.http.get(url).subscribe(err => { 
         console.log(err);
       });

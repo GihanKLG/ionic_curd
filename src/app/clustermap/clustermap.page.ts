@@ -90,13 +90,35 @@ export class ClustermapPage {
           var j;
           var division = [];
 
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that start to run for loop (backend response (action:read)) -'+h+':'+m+':'+s+':'+n);
+
           for (j = 0; j < location.length; j++) {
             location[j].lat = Number(location[j].lat);
             location[j].lng = Number(location[j].lng);
             division[j] = location[j].Division;
           }
 
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that end to run for loop (backend response (action:read)) -'+h+':'+m+':'+s+':'+n);
+
           var InforObj = [];
+
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that start to run marker cluster process) -'+h+':'+m+':'+s+':'+n);
+
           var markers = location.map(function (location, i) {
             var marker = new google.maps.Marker({
               position: location,
@@ -116,14 +138,37 @@ export class ClustermapPage {
             return marker;
           });
 
+          
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that end to run marker cluster process) -'+h+':'+m+':'+s+':'+n);
+
           // Add a marker clusterer to manage the markers.
           var markerCluster = new MarkerClusterer(map, markers,
             { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
         });
 
+        d = new Date();
+        h =  d.getHours();
+        m = d.getMinutes();
+        s = d.getSeconds();
+        n = d.getMilliseconds();
+        console.log('Time that call backend Api (action:division_read)) -'+h+':'+m+':'+s+':'+n);
+
+
         var url = 'http://localhost/googlemap/svr/report.php?action=division_read&session_id=' + id;
  
         this.http.get(url).subscribe((res: any) => {
+
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that get response backend Api (action:division_read)) -'+h+':'+m+':'+s+':'+n);
 
           var circles = [];
           var result = res.details.Location;
@@ -171,6 +216,14 @@ export class ClustermapPage {
               circle.setMap(map);
             }
           }
+
+          d = new Date();
+          h =  d.getHours();
+          m = d.getMinutes();
+          s = d.getSeconds();
+          n = d.getMilliseconds();
+          console.log('Time that end to run for loop of br (action: division_read) -'+h+':'+m+':'+s+':'+n);
+          
           var place = latLng;
           var leastPositionData = find_closest_marker(place, circles);
           var leastposition = leastPositionData['leastposition'];

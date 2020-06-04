@@ -53,49 +53,21 @@ export class ClustermapPage {
       }
       
       var map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-      //get time
-      d = new Date();
-      h =  d.getHours();
-      m = d.getMinutes();
-      s = d.getSeconds();
-      n = d.getMilliseconds();
-      console.log('end time load google map -'+h+':'+m+':'+s+':'+n);
-
+      this.authService.getTime("end time load google map -"); //get time
       this.ma = map;
 
       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       this.authService.getAccessId().then(id => {
       var url = 'http://localhost/googlemap/svr/report.php?action=read&location=LatLng'+latLng+'&session_id=' + id;
 
-      //get time
-      d = new Date();
-      h =  d.getHours();
-      m = d.getMinutes();
-      s = d.getSeconds();
-      n = d.getMilliseconds();
-      console.log('Time that call backend Api (action:read) -'+h+':'+m+':'+s+':'+n);
+      this.authService.getTime("Time that call backend Api (action:read) -");  //get time
       
         this.http.get(url).subscribe((res: any) => {
 
-          //get time
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that get backend response (action:read) -'+h+':'+m+':'+s+':'+n);
+          this.authService.getTime("Time that get backend response (action:read) -"); //get time
 
-          var location = res.details.Location;
-          var j;
-          var division = [];
-
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that start to run for loop (backend response (action:read)) -'+h+':'+m+':'+s+':'+n);
+          var location = res.details.Location, j, division = [];
+          this.authService.getTime("Time that start to run for loop (backend response (action:read)) -"); //get time
 
           for (j = 0; j < location.length; j++) {
             location[j].lat = Number(location[j].lat);
@@ -103,21 +75,9 @@ export class ClustermapPage {
             division[j] = location[j].Division;
           }
 
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that end to run for loop (backend response (action:read)) -'+h+':'+m+':'+s+':'+n);
-
+          this.authService.getTime("Time that end to run for loop (backend response (action:read)) -"); //get time
           var InforObj = [];
-
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that start to run marker cluster process) -'+h+':'+m+':'+s+':'+n);
+          this.authService.getTime("Time that start to run marker cluster process -"); //get time
 
           var markers = location.map(function (location, i) {
             var marker = new google.maps.Marker({
@@ -138,42 +98,22 @@ export class ClustermapPage {
             return marker;
           });
 
-          
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that end to run marker cluster process) -'+h+':'+m+':'+s+':'+n);
+          this.authService.getTime("Time that end to run marker cluster process -"); //get time
 
           // Add a marker clusterer to manage the markers.
           var markerCluster = new MarkerClusterer(map, markers,
             { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
         });
 
-        d = new Date();
-        h =  d.getHours();
-        m = d.getMinutes();
-        s = d.getSeconds();
-        n = d.getMilliseconds();
-        console.log('Time that call backend Api (action:division_read)) -'+h+':'+m+':'+s+':'+n);
-
+        this.authService.getTime("Time that call backend Api (action:division_read) -"); //get time
 
         var url = 'http://localhost/googlemap/svr/report.php?action=division_read&session_id=' + id;
  
         this.http.get(url).subscribe((res: any) => {
 
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that get response backend Api (action:division_read)) -'+h+':'+m+':'+s+':'+n);
+          this.authService.getTime("Time that get response backend Api (action:division_read) -"); //get time
 
-          var circles = [];
-          var result = res.details.Location;
-          var info = [];
-          var i;
+          var circles = [], i, result = res.details.Location, info = [];
           for (i = 0; i < result.length; i++) {
             const lt = result[i].lat;
             const lat = lt.split(",");
@@ -217,12 +157,7 @@ export class ClustermapPage {
             }
           }
 
-          d = new Date();
-          h =  d.getHours();
-          m = d.getMinutes();
-          s = d.getSeconds();
-          n = d.getMilliseconds();
-          console.log('Time that end to run for loop of br (action: division_read) -'+h+':'+m+':'+s+':'+n);
+          this.authService.getTime("Time that end to run for loop of br (action: division_read) -"); //get time
           
           var place = latLng;
           var leastPositionData = find_closest_marker(place, circles);

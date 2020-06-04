@@ -212,7 +212,7 @@ export class ClustermapPage {
        infoWindow.open(this.ma, event);
     });
   }
-
+  
 }
 
 function find_closest_marker(place, circle) {

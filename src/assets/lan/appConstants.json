@@ -1,0 +1,527 @@
+{
+    "active_gsmb_officers": {
+        "si": "භූ විද්‍යා නිලධාරීන්",
+        "en": "ACTIVE GSMB OFFICERS",
+        "ta": "செயலில் உள்ள ஜி.எஸ்.எம்.பி அதிகாரிகள்"
+    },
+    "active_license_owners": {
+        "si": "බලපත්‍රලාභීන්",
+        "en": "LICENSE OWNERS",
+        "ta": "உரிம உரிமையாளர்கள்"
+    },
+    "active_gsmb_officers": {
+        "si": "ක්‍රියාකාරී ජීඑස්එම්බී නිලධාරීන්",
+        "en": "GSMB OFFICERS",
+        "ta": "ஜி.எஸ்.எம்.பி அதிகாரிகள்"
+    },
+    "active_police_officers": {
+        "si": "පොලිස් නිලධාරීන්",
+        "en": "POLICE OFFICERS",
+        "ta": "போலீஸ் அதிகாரிகள்"
+    },
+    "active_public": {
+        "si": "මහජනතාව",
+        "en": "PUBLIC",
+        "ta": "பொதுமக்கள்"
+    },
+    "active_sites": {
+        "si": "සක්‍රිය වැඩබිම්",
+        "en": "ACTIVE SITES",
+        "ta": "செயலில் உள்ள தளங்கள்"
+    },
+    "actioned_lorries": {
+        "si": "කටයුතු කිරීම්",
+        "en": "ACTIONED LORRIES",
+        "ta": "நடவடிக்கை எடுக்கப்படட லாரிகள்"
+    },
+    "add_new_License": {
+        "si": "නව බලපත්‍රයක් එක් කරන්න",
+        "en": "Add New License",
+        "ta": "புதிய உரிமத்தைச் சேர்க்கவும்"
+    },
+    "add_transport_details": {
+        "si": "ලොරියට පටවන්න",
+        "en": "Dispatch Load",
+        "ta": "டிரக்கை ஏற்றவும்"
+    },
+    "app_name": {
+        "si": "වැලිතොට",
+        "en": "Welithota",
+        "ta": "வலிதொட"
+    },
+    "and_caractor": {
+        "si": "සහ",
+        "en": "&",
+        "ta": "மற்றும்"
+    },
+    "cancel": {
+        "si": "අවලංගු කරන්න",
+        "en": "Cancel",
+        "ta": "ரத்து"
+    },
+    "cancelled": {
+        "si": "අවලංගු කිරීම්",
+        "en": "CANCELLED",
+        "ta": "ரத்து செய்யப்பட்டவை"
+    },
+    "capacity_amount": {
+        "si": "ධාරිතාව",
+        "en": "Capacity",
+        "ta": "கொள்ளளவு"
+    },
+    "capacity_measure": {
+        "si": "කියුබ්",
+        "en": "cubes",
+        "ta": "க்யூப்ஸ்"
+    },
+    "check": {
+        "si": "පරීක්ෂා කරන්න",
+        "en": "Check",
+        "ta": "சரி பார்"
+    },
+    "checked_lorries": {
+        "si": "පරීක්ෂා කිරීම්",
+        "en": "CHECKED LORRIES",
+        "ta": "சரிபார்க்கப்பட்ட லாரிகள்"
+    },
+    "check_with_sms": {
+        "si": "SMS මගින් පරීක්ෂා කිරීමට",
+        "en": "To check via SMS",
+        "ta": "எஸ்எம்எஸ் வழியாக சரிபார்க்க"
+    },
+    "create_license": {
+        "si": "බලපත්රයක් සාදන්න",
+        "en": "Create License",
+        "ta": "உரிமத்தை உருவாக்கவும்"
+    },
+    "destination": {
+        "si": "ගමනාන්තය",
+        "en": "Destination",
+        "ta": "சேரும் இடம்"
+    },
+    "developed_by": {
+        "si": "නිපැයුම",
+        "en": "Developed by",
+        "ta": "உருவாக்கியது"
+    },
+    "emergency": {
+        "si": "හදිසි දුරකථන",
+        "en": "Emergency Numbers",
+        "ta": "அவசர அழைப்புகள்"
+    },
+    "end_date": {
+        "si": "තෙක් වලංගු වේ",
+        "en": "Valid Until",
+        "ta": "வரை செல்லுபடியாகும்"
+    },
+    "expire": {
+        "si": "තෙක් වලංගු වේ",
+        "en": "Expaire",
+        "ta": "செல்லுபடியாகும்"
+    },
+    "extended": {
+        "si": "දීර්ග කිරීම්",
+        "en": "EXTENDED",
+        "ta": "நீட்டிக்கப்பட்டவை"
+    },
+    "finance": {
+        "si": "දවසේ අදායම",
+        "en": "FINANCE",
+        "ta": "நிதி"
+    },
+    "from_license_no": {
+        "si": "බලපත්‍ර අංකය අනුව",
+        "en": "By License Number",
+        "ta": "உரிம எண்"
+    },
+    "from_location": {
+        "si": "කැනීම් ස්ථානය අනුව",
+        "en": "By Location",
+        "ta": "இட அமைவு"
+    },
+    "gsmb_name_first": {
+        "si": "භූ විද්‍යා සමීක්ෂණ",
+        "en": "Geological Survey",
+        "ta": "புவியியல் ஆய்வு"
+    },
+    "gsmb_name_full": {
+        "si": "භූ විද්‍යා සමීක්ෂණ හා පතල් කාර්යාංශය",
+        "en": "Geological Survey & Mines Bureau",
+        "ta": "புவியியல் ஆய்வு மற்றும் சுரங்க பணியகம்"
+    },
+    "gsmb_name_last": {
+        "si": "පතල් කාර්යාංශය",
+        "en": "Mines Bureau",
+        "ta": "சுரங்க பணியகம்"
+    },
+    "holder_address": {
+        "si": "දරන්නාගේ ලිපිනය",
+        "en": "Holder Address",
+        "ta": "ஹோல்டர் முகவரி"
+    },
+    "license": {
+        "si": "බලපත්‍ර",
+        "en": "Licenses",
+        "ta": "உரிமங்கள்"
+    },
+    "license_holder": {
+        "si": "බලපත්‍රලාභියාගේ නම",
+        "en": "License Holder",
+        "ta": "உரிமம் வைத்திருப்பவர்"
+    },
+    "license_no": {
+        "si": "බලපත්‍ර අංකය",
+        "en": "License Number",
+        "ta": "உரிம எண்"
+    },
+    "license_owner": {
+        "si": "බලපත්‍ර හිමිකරුවන්",
+        "en": "License Owners",
+        "ta": "உரிமையாளர்கள்"
+    },
+    "loaded_date_time": {
+        "si": "පැටවූ දිනය/වෙලාව",
+        "en": "Loaded Date/Time",
+        "ta": "ஏற்றப்பட்ட தேதி/நேரம்"
+    },
+    "load_due": {
+        "si": "අවසන් කලයුතු වේලාව",
+        "en": "Due Date/Time",
+        "ta": "உரிய தேதி/நேரம்"
+    },
+    "load_number": {
+        "si": "පැටවීම් අංකය",
+        "en": "Load Number",
+        "ta": "சுமை எண்"
+    },
+    "location": {
+        "si": "කැනීම් ස්ථානය",
+        "en": "Location",
+        "ta": "இட அமைவு"
+    },
+    "location_end": {
+        "si": "ගෙනයන ස්ථානය",
+        "en": "Destination",
+        "ta": "இலக்கு"
+    },
+    "location_start": {
+        "si": "ආරම්භක ස්ථානය",
+        "en": "Location Started",
+        "ta": "தொடக்க புள்ளி"
+    },
+    "logout": {
+        "si": "ඉවත්වන්න",
+        "en": "Logout",
+        "ta": "வெளியேறு"
+    },
+    "lorry": {
+        "si": "ලොරි",
+        "en": "Lorry",
+        "ta": "லாரி"
+    },
+    "lorry_book": {
+        "si": "ලොරි පොත",
+        "en": "Lorry Book",
+        "ta": "லாரி புத்தகம்"
+    },
+    "lorry_no": {
+        "si": "ලොරි අංකය:",
+        "en": "Lorry No:",
+        "ta": "லாரி எண்:"
+    },
+    "mobile_no": {
+        "si": "ජංගම දූරකථන අංකය",
+        "en": "Mobile No",
+        "ta": "கைபேசி எண்"
+    },
+    "messages": {
+        "si": "පණිවිඩ",
+        "en": "Messages",
+        "ta": "செய்திகள்"
+    },
+    "mineral_extractions_history": {
+        "si": "ඛනිජමය උපුටා ගැනීම් ඉතිහාසය",
+        "en": "MINERAL EXTRACTIONS HISTORY",
+        "ta": "கனிம பிரித்தெடுத்தல் வரலாறு"
+    },
+    "new": {
+        "si": "නව බලපත්‍",
+        "en": "NEW",
+        "ta": "புதியவை"
+    },
+    "not_valid": {
+        "si": "අවසර රහිත ඛනිජ/වැලි තොගයකි",
+        "en": "Not a permitted load",
+        "ta": "அங்கீகரிக்கப்படாத கனிம/மணல் இருப்பு."
+    },
+    "other_err": {
+        "si": "සේවාදායකයට සම්බන්ධ වන විට යමක් සිදුවිය. කරුණාකර යෙදුම නැවත විවෘත කිරීමට උත්සාහ කරන්න.",
+        "en": "Something happened while connecting to the server. Please try to open the application again.",
+        "ta": "சேவையகத்துடன் இணைக்கும்போது ஏதோ நடந்தது. பயன்பாட்டை மீண்டும் திறக்க முயற்சிக்கவும்."
+    },
+    "otp_check": {
+        "si": "ප්‍රවේශ කේතය පරීක්ෂා කරන්න",
+        "en": "Check Access Code",
+        "ta": "அணுகல் குறியீட்டைச் சரிபார்க்கவும்"
+    },
+    "otp_get": {
+        "si": "ප්‍රවේශ කේතය ලබා ගන්න",
+        "en": "Get Access Code",
+        "ta": "அணுகல் குறியீட்டை மீட்டெடுக்கவும்"
+    },
+    "overall_user_stats": {
+        "si": "දවසේ සක්‍රීය පරිශීලක දත්ත",
+        "en": "OVERALL USER STATS (ACTIVE)",
+        "ta": "ஒட்டுமொத்த பயனர் புள்ளிவிவரங்கள் (செயலில் உள்ளவர்கள்)"
+    },
+    "owner": {
+        "si": "බලපත්‍ර හිමිකරු අනුව",
+        "en": "Owner",
+        "ta": "உரிமையாளர்"
+    },
+    "owner_name": {
+        "si": "අයිතිකරුගේ නම",
+        "en": "Owner Name",
+        "ta": "உரிமையாளரின் பெயர்"
+    },
+    "phone_number_subtitle": {
+        "si": "දුරකථන අංකය",
+        "en": "Mobile Number",
+        "ta": "உங்கள் தொலைபேசி எண்"
+    },
+    "phone_number_placeholder": {
+        "si": "0++ +++ ++++",
+        "en": "0++ +++ ++++",
+        "ta": "0++ +++ ++++"
+    },
+    "privacy_policy": {
+        "si": "රහස්‍යභාවය සුරකීමේ ප්‍රතිපත්තිය",
+        "en": "Privacy Policy",
+        "ta": "தனியுரிமைக் கொள்கை"
+    },
+    "please_type_verification_code": {
+        "si": "වැලිතොට",
+        "en": "Please type the verification code",
+        "ta": "tm"
+    },
+    "please_type_verification_code_first_part": {
+        "si": "කරුණාකර",
+        "en": "Please type the verification code sent to",
+        "ta": "சரிபார்ப்புக் குறியீட்டைத் தட்டச்சு செய்க."
+    },
+    "please_type_verification_code_second_part": {
+        "si": "වෙත යවන ලද සත්‍යාපන කේතය ටයිප් කරන්න.",
+        "en": "",
+        "ta": "அனுப்பப்பட்டது."
+    },
+    "powered_by": {
+        "si": "ශක්තිය",
+        "en": "Powered by",
+        "ta": "இயக்குவது"
+    },
+    "renewed": {
+        "si": "අලුත් කිරීම්",
+        "en": "RENEWED",
+        "ta": "புதுப்பிக்கப்பட்டவை"
+    },
+    "received_messages": {
+        "si": "ලැබුනු පණිවිඩ",
+        "en": "RECEIVED MESSAGES",
+        "ta": "பெறப்பட்ட செய்திகள்"
+    },
+    "report": {
+        "si": "GSMB ආයතනයට දන්වන්න",
+        "en": "Report to GSMB",
+        "ta": "GSMB க்கு தெரிவிக்கவும்"
+    },
+    "reported_lorries": {
+        "si": "වාර්තා කිරීම්",
+        "en": "REPORTED LORRIES",
+        "ta": "புகாரளிக்கப்பட்ட லாரிகள்"
+    },
+    "remaining_amount": {
+        "si": "ඉතිරි",
+        "en": "Remaining",
+        "ta": "மீதமுள்ள"
+    },
+    "resource_extractions": {
+        "si": "කැනීම් (කියුබ්)",
+        "en": "RESOURCE EXTRACTIONS",
+        "ta": "வள பிரித்தெடுத்தல்"
+    },
+    "requested_otps": {
+        "si": "ඉල්ලූ OTPS",
+        "en": "REQUESTED OTPS",
+        "ta": "கோரிய OTPS"
+    },
+    "sand_mining_license": {
+        "si": "බලපත්‍ර විස්තර",
+        "en": "Sand Mining License",
+        "ta": "மணல் சுரங்க உரிமம்"
+    },
+    "search_by": {
+        "si": "සොයන්න",
+        "en": "Search by",
+        "ta": "மூலம் தேடுங்கள்"
+    },
+    "start_date": {
+        "si": "සිට",
+        "en": "Start From",
+        "ta": "தொடங்கவும்"
+    },
+    "submit": {
+        "si": "යොමු කරන්න",
+        "en": "SUBMIT",
+        "ta": "சமர்ப்பி"
+    },
+    "sent_to_your_number": {
+        "si": "වැලිතොට",
+        "en": "sent to your number",
+        "ta": "tm"
+    },
+    "site_activities": {
+        "si": "වැඩබිම් ක්‍රියාකාරකම්",
+        "en": "SITE ACTIVITIES",
+        "ta": "தள செயல்பாடுகள்"
+    },
+    "sms_to_gsmb": {
+        "si": "(අවකාශය) සහ GSMB වෙත SMS කරන්න",
+        "en": "(space) and SMS to GSMB",
+        "ta": "(இடம்) மற்றும்  ஜி.எஸ்.எம்.பிக்கு  எஸ்எம்எஸ்"
+    },
+    "sms_vehicle_num": {
+        "si": "වාහන අංකය 0115708132 වෙත කෙටි පණිවිඩයක් ලෙස එවන්න.",
+        "en": "Type the vehicle number and SMS to 0115708132.",
+        "ta": "வாகன எண்ணைத் தட்டச்சு செய்து 0115708132 க்கு அனுப்பவும்."
+    },
+    "status": {
+        "si": "තත්ත්වය",
+        "en": "Status",
+        "ta": "நிலை"
+    },
+    "sent_messages": {
+        "si": "යවන ලද පණිවිඩ",
+        "en": "SENT MESSAGES",
+        "ta": "அனுப்பிய செய்திகள்"
+    },
+    "suspend_license": {
+        "si": "බලපත්‍රය අත්හිටුවන්න",
+        "en": "Suspend license",
+        "ta": "உரிமத்தை இடைநிறுத்துங்கள்"
+    },
+    "system": {
+        "si": "මෘදුකාංග පරිශීලන දත්ත",
+        "en": "SYSTEM",
+        "ta": "அமைப்பு"
+    },
+    "terms_conditions": {
+        "si": "නියමයන් සහ කොන්දේසි",
+        "en": "Terms and Conditions",
+        "ta": "விதிமுறைகள் மற்றும் நிபந்தனைகள்"
+    },
+    "today_license_status": {
+        "si": "අද බලපත්‍ර තත්ත්වය",
+        "en": "TODAY LICENSE STATUS",
+        "ta": "இன்று லைசென்ஸ் நிலை"
+    },
+    "total_royalty": {
+        "si": "රාජ්‍යභාගය",
+        "en": "TOTAL ROYALTY",
+        "ta": "மொத்த ராயல்டி"
+    },
+    "track_violations": {
+        "si": "දවසේ බලපත්‍ර උල්ලංගනය කිරීම්",
+        "en": "TRACK VIOLATIONS",
+        "ta": "தடங்களை மீறுதல்"
+    },
+    "trips_loads": {
+        "si": "පැටවීම් වාර",
+        "en": "TRIPS/LOADS",
+        "ta": "பயணங்கள்/சுமைகள்"
+    },
+    "type": {
+        "si": "වර්ගය",
+        "en": "Type",
+        "ta": "வகை"
+    },
+    "vehicle_number": {
+        "si": "වාහන අංකය",
+        "en": "Vehicle number",
+        "ta": "வாகன எண்"
+    },
+    "update": {
+        "si": "යාවත්කාලීන කරන්න ",
+        "en": "Update",
+        "ta": "புதுப்பிக்கப்பட்டது"
+    },
+    "used_amount": {
+        "si": "භාවිතා කර ඇති",
+        "en": "Used",
+        "ta": "பயன்படுத்திய"
+    },
+    "used_lorries": {
+        "si": "සක්‍රීය ලොරි",
+        "en": "USED LORRIES",
+        "ta": "பயன்படுத்திய லாரிகள்"
+    },
+    "valid": {
+        "si": "අවසර ඇති වැලි/ඛනිජ ප්‍රවාහනය කරයි.",
+        "en": "Valid",
+        "ta": "செல்லுபடியாகும்"
+    },
+    "validity_start": {
+        "si": "වලංගු ආරම්භය",
+        "en": "Validity Start",
+        "ta": "செல்லுபடியாகும் தொடக்கம்"
+    },
+    "vehicle_no": {
+        "si": "වාහන අංකය",
+        "en": "Vehicle Number",
+        "ta": "வாகன எண்"
+    },
+    "verification_code": {
+        "si": "වැලිතොට",
+        "en": "Verification Code",
+        "ta": "tm"
+    },
+    "verified_otps": {
+        "si": "සත්‍යාපනය OTPS",
+        "en": "VERIFIED OTPS",
+        "ta": "சரிபார்க்கப்பட்ட OTPS"
+    },
+    "we_have_sent_sms_msg_first_part": {
+        "si": "රහස්‍ය අංකයක් (OTP) සහිත පණිවිඩයක් ඔබට ලැබෙනු ඇත.",
+        "en": "We will send you an SMS with OTP.",
+        "ta": "நாங்கள் உங்களுக்கு ஒரு எஸ்எம்எஸ் செய்தியை அனுப்புவோம்"
+    },
+    "we_have_sent_sms_msg_second_part": {
+        "si": "කරුණාකර ඉහතින් එය ඇතුලත් කරන්න.",
+        "en": "Please provide the same above.",
+        "ta": "கேரியர் கட்டணங்கள் பொருந்தக்கூடும்"
+    },
+    "we_will_send_sms_msg_first_part": {
+        "si": "රහස්‍ය අංකයක් (OTP) සහිත පණිවිඩයක් ඔබට ලැබෙනු ඇත.",
+        "en": "We will send you an SMS with OTP.",
+        "ta": "நாங்கள் உங்களுக்கு ஒரு கடவுச்சொல்லை எஸ்எம்எஸ்ல் அனுப்புவோம்."
+    },
+    "we_will_send_sms_msg_second_part": {
+        "si": "කරුණාකර ඊළඟ තිරයේ දී එය ඇතුලත් කරන්න.",
+        "en": "Please provide the same on next screen.",
+        "ta": "அடுத்த திரையில் அதை வழங்கவும்."
+    },
+    "what_mmpro_for": {
+        "si": "What's the use of mmPro?",
+        "en": "What's the use of mmPro?",
+        "ta": "What's the use of mmPro?"
+    },
+    "your_royalty_due": {
+        "si": "රාජ්‍යය භාගය",
+        "en": "Your Royalty (Sand) Due is",
+        "ta": "உங்கள் ராயல்டி டியூ."
+    },
+    "your_service_fee": {
+        "si": "ඔබේ සේවා ගාස්තුව",
+        "en": "Your Service Fee",
+        "ta": "உங்கள் சேவை கட்டணம்"
+    }
+}

@@ -107,6 +107,13 @@ export class AuthenticationService {
     this.storage.set('accessId', id);
   }
 
+  loadAppConsts() {
+    return new Promise((resolve: any, reject: any) => {
+      // resolve(from(this.http.get('assets/lan/appConstants.json')));
+      this.http.get('assets/lan/appConstants.json').subscribe((data) => resolve(data));
+    });
+  }
+
   getTime(discription) {
     var d = new Date();
     var h =  d.getHours();

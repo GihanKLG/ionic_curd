@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Dashboard
+    </ion-title>    
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content>
+    <ion-grid>
+      <ion-row class = "main-container">
+        <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" class = "container-gsmb">
+          <ion-row class = "gsmb-row">
+            <ion-col size = "4" class = "gsmb-logo">
+              <img src="./assets/images/Image1.png"  class = "gsmb-logo">
+            </ion-col>
+            <ion-col class = "gsmb-name">
+              <ion-text class="gsmb-name">
+                <!-- GSMB APP -->
+                <!-- {{appComponent.appConsts.gsmb_name_full[appComponent.selectedLan]}} -->
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" class = "container-license-info">
+          <ion-row class="license-main-div">
+            <ion-row class = "nav_text">
+              <ion-text  class="name">
+                <!-- {{appComponent.appConsts.owner[appComponent.selectedLan]}}: -->
+                {{appComponent.selectedLicense.ml_owner}}
+              </ion-text>
+            </ion-row>
+
+            <ion-row class="license-info-1">
+              <ion-col size = "7" class = "select-license-no">
+                <ion-select [(ngModel)] = "selectedLicenseNo" (ionChange) = "licesnseSelect();" placeholder="Select One" >
+                  <ion-select-option *ngFor="let license of appComponent.licenseInfo" class="select-main">
+                    <ion-text class="selected-item" value = "selectedLicenseNo">{{license.license_no}}</ion-text>
+                  </ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col class = "license-total-capacity">
+                <ion-row class="nopadding">
+                  <!-- <ion-text>{{appComponent.appConsts.capacity_amount[appComponent.selectedLan]}}</ion-text> -->
+                </ion-row>
+                <ion-row>
+                  <ion-text class="capacitycount">{{appComponent.selectedLicense.capacity}}</ion-text>
+                </ion-row>
+                <ion-row>
+                  <!-- <ion-text class="textcubes">{{appComponent.appConsts.capacity_measure[appComponent.selectedLan]}}</ion-text> -->
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="license-info-2">
+              <ion-col class="license-start">
+                <!-- <ion-row><ion-text class="validtext">{{appComponent.appConsts.start_date[appComponent.selectedLan]}}</ion-text></ion-row>-->
+                <ion-row><ion-text class="datetext">{{appComponent.selectedLicense.start}}</ion-text></ion-row>  
+              </ion-col>
+              <ion-col class="license-end">
+                <!-- <ion-row><ion-text class="validtext">{{appComponent.appConsts.end_date[appComponent.selectedLan]}}</ion-text></ion-row>-->
+                <ion-row><ion-text class="datetext">{{appComponent.selectedLicense.end}}</ion-text></ion-row> 
+              </ion-col>
+            </ion-row>
+            <ion-row class = "license-info-3">
+              <ion-col class="location-div">
+                <ion-row>
+                  <ion-col size="3">
+                    <ion-icon name="pin"></ion-icon>
+                  </ion-col>
+                  <ion-col size="9">
+                    <!-- <ion-text class="location">{{appComponent.appConsts.location[appComponent.selectedLan]}} </ion-text> -->
+                    <ion-text class="place">{{appComponent.selectedLicense.site}}</ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col class="license-status-div">
+                <ion-row>
+                  <ion-col size="3">
+                    <ion-icon name="book"></ion-icon>
+                  </ion-col>
+                  <ion-col size="9">
+                    <!-- <ion-text class="status-name">{{appComponent.appConsts.status[appComponent.selectedLan]}} </ion-text>-->
+                    <ion-text class="status">{{appComponent.selectedLicense.status}}</ion-text> 
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="license-info-4">
+              <ion-col class="userd-cubes">
+                <!-- <ion-row><ion-text>{{appComponent.appConsts.used_amount[appComponent.selectedLan]}}</ion-text></ion-row>-->
+                <ion-row><ion-text class="count">{{appComponent.selectedLicense.used}}</ion-text></ion-row>
+                <!-- <ion-row><ion-text class="textcubes">{{appComponent.appConsts.capacity_measure[appComponent.selectedLan]}}</ion-text></ion-row> --> 
+              </ion-col>
+              <ion-col class="remain-cubes">
+                <!-- <ion-row><ion-text>{{appComponent.appConsts.remaining_amount[appComponent.selectedLan]}}</ion-text></ion-row>-->
+                <ion-row><ion-text class="count">{{appComponent.selectedLicense.remaining}}</ion-text></ion-row>
+                <!-- <ion-row><ion-text class="textcubes">{{appComponent.appConsts.capacity_measure[appComponent.selectedLan]}}</ion-text></ion-row> --> 
+              </ion-col>
+            </ion-row>
+          </ion-row>
+          <ion-row>
+            <ion-col size ="5" class="licensecard">
+              <!-- <ion-row><ion-text class = "tumbnail-service">{{appComponent.appConsts.your_service_fee[appComponent.selectedLan]}}</ion-text></ion-row>-->
+                <ion-text class = "tumbnail-service">Rs. {{appComponent.selectedLicense.service}}</ion-text> 
+              <ion-row>
+                <ion-chip outline = "true" class = "clip-class">
+                  <ion-icon name="checkmark" class = "tumbnail-service"></ion-icon>
+                  <ion-label  class = "tumbnail-service"><p>Payed</p></ion-label>
+                </ion-chip></ion-row>
+            </ion-col>
+        
+            <ion-col class="capacitycard">
+                <!-- <ion-row class="nopadding"><ion-text class="text8">{{appComponent.appConsts.your_royalty_due[appComponent.selectedLan]}}</ion-text></ion-row>-->
+                <ion-row class="count"><ion-text class="capacitycount">Rs. {{appComponent.selectedLicense.royalty}}</ion-text></ion-row> 
+            </ion-col>
+          </ion-row>
+          <ion-row class = "submit-button-container">
+            <ion-button expand="block" (click)="addTransportDetails()" class="nav-buttons">Add dispatch
+            </ion-button>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+<!-- <ion-footer *ngIf="appComponent.viewFooter"> -->
+  <!-- <ion-toolbar>
+  </ion-toolbar>
+</ion-footer> -->

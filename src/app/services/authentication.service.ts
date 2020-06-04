@@ -107,4 +107,13 @@ export class AuthenticationService {
     this.storage.set('accessId', id);
   }
 
+  getTime(discription) {
+    var d = new Date();
+    var h =  d.getHours();
+    var m = d.getMinutes();
+    var s = d.getSeconds();
+    var n = d.getMilliseconds();
+    console.log(discription + ' -'+h+':'+m+':'+s+':'+n);
+  }
+
 }
